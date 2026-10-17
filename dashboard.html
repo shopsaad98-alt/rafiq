@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>لوحة زوار رفيق</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: one RTL page with two views — the animated landing page and the owner's live visitors dashboard (#dashboard). Royal blue ledger + amber deadline accent. */
+:root{
+  --bg:#F5F7FC; --surface:#FFFFFF; --ink:#14286B; --muted:#3A4566; --soft:#5A6688;
+  --primary:#2346C8; --primary-h:#1A36A0; --on-primary:#FFFFFF;
+  --accent:#E3A21A; --accent-ink:#9A5F00; --on-accent:#14286B;
+  --panel:#E3EAFB; --panel2:#DCE5FF; --line:#DAE2F3; --line2:#ECF0F9;
+  --deep:#14286B; --deep2:#22398A; --on-deep:#F5F7FC; --on-deep-muted:#D2DBF4; --on-deep-accent:#A9BEFF;
+  --warn-bg:#FEF5E1; --warn:#8A5A0E; --bad:#9C3526; --bad-bg:#F8ECE9; --good:#1F7A4D; --good-bg:#E3F4EA;
+  --shadow:rgba(20,40,107,.16);
+  --f-display:'Noto Kufi Arabic', 'Segoe UI', Tahoma, sans-serif;
+  --f-body:'IBM Plex Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0B1430; --surface:#121D40; --ink:#E6ECFF; --muted:#B8C3E3; --soft:#929EC4;
+  --primary:#7B96FF; --primary-h:#9BB0FF; --on-primary:#0B1430;
+  --accent:#F0B53A; --accent-ink:#F0B53A; --on-accent:#14286B;
+  --panel:#18264F; --panel2:#1E2F60; --line:#26366C; --line2:#1B2A57;
+  --deep:#16245A; --deep2:#22357A; --on-deep:#F5F7FC; --on-deep-muted:#C6D0EF; --on-deep-accent:#A9BEFF;
+  --warn-bg:#3A2C0E; --warn:#F0C066; --bad:#F29A8A; --bad-bg:#3B1A17; --good:#62D6A0; --good-bg:#12352A;
+  --shadow:rgba(0,0,0,.45); color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0B1430; --surface:#121D40; --ink:#E6ECFF; --muted:#B8C3E3; --soft:#929EC4;
+  --primary:#7B96FF; --primary-h:#9BB0FF; --on-primary:#0B1430;
+  --accent:#F0B53A; --accent-ink:#F0B53A; --on-accent:#14286B;
+  --panel:#18264F; --panel2:#1E2F60; --line:#26366C; --line2:#1B2A57;
+  --deep:#16245A; --deep2:#22357A; --on-deep:#F5F7FC; --on-deep-muted:#C6D0EF; --on-deep-accent:#A9BEFF;
+  --warn-bg:#3A2C0E; --warn:#F0C066; --bad:#F29A8A; --bad-bg:#3B1A17; --good:#62D6A0; --good-bg:#12352A;
+  --shadow:rgba(0,0,0,.45); color-scheme:dark }
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{direction:rtl; background:var(--bg); color:var(--ink); font-family:var(--f-body); font-size:16px; line-height:1.75}
+body::before{content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top,0px); z-index:60; background:var(--bg)}
+a{color:var(--primary)} a:hover{color:var(--primary-h)}
+img{max-width:100%; display:block}
+h1,h2,h3{font-family:var(--f-display); text-wrap:balance; margin:0}
+h2{font-size:clamp(26px,3vw,34px); line-height:1.45}
+p{margin:0}
+:focus-visible{outline:3px solid var(--accent); outline-offset:2px; border-radius:6px}
+.wrap{max-width:1240px; margin-inline:auto; padding-left:max(16px, env(safe-area-inset-left,0px)); padding-right:max(16px, env(safe-area-inset-right,0px))}
+.band{padding-block:76px}
+.num{font-variant-numeric:tabular-nums}
+.ph{width:100%; object-fit:cover; border-radius:16px; background:var(--panel)}
+.lede{font-size:17px; color:var(--muted); max-width:62ch}
+.small{font-size:13px; color:var(--soft)}
+.row{display:flex; flex-wrap:wrap; gap:40px; align-items:center}
+.row > *{min-width:0}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:48px; padding:0 24px; border-radius:12px; font-weight:600; font-family:inherit; font-size:17px; text-decoration:none; border:0; cursor:pointer; transition:transform .2s, background .2s, box-shadow .2s}
+.btn-main{background:var(--primary); color:var(--on-primary)} .btn-main:hover{background:var(--primary-h); color:var(--on-primary); transform:translateY(-2px); box-shadow:0 10px 24px var(--shadow)}
+.btn-ghost{background:var(--surface); color:var(--ink); border:1px solid var(--line)} .btn-ghost:hover{color:var(--ink); transform:translateY(-2px)}
+.btn-amber{background:var(--accent); color:var(--on-accent)} .btn-amber:hover{color:var(--on-accent); filter:brightness(1.06); transform:translateY(-2px)}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:18px}
+.eyebrow{display:inline-block; background:var(--panel); padding:6px 14px; border-radius:8px; font-size:15px; font-weight:600}
+
+/* progress + header */
+#progress{position:fixed; top:env(safe-area-inset-top,0px); right:0; height:3px; width:0; background:var(--accent); z-index:70; transition:width .1s linear}
+header.top{position:sticky; top:env(safe-area-inset-top,0px); z-index:50; background:color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter:blur(10px); border-bottom:1px solid transparent; transition:border-color .3s}
+header.top.scrolled{border-bottom-color:var(--line)}
+header.top .wrap{display:flex; align-items:center; justify-content:space-between; gap:16px; padding-block:14px; flex-wrap:wrap}
+.logo{display:flex; align-items:center; gap:10px; font-family:var(--f-display); font-weight:800; font-size:20px; color:var(--ink); text-decoration:none}
+.logo span.mark{width:40px; height:40px; border-radius:10px; background:var(--deep); display:grid; place-items:center}
+.logo b{color:var(--primary); font-weight:800}
+nav.menu{display:flex; flex-wrap:wrap; gap:20px; font-weight:500}
+nav.menu a{color:var(--ink); text-decoration:none; position:relative}
+nav.menu a::after{content:""; position:absolute; right:0; bottom:-2px; height:2px; width:0; background:var(--accent); transition:width .25s}
+nav.menu a:hover::after{width:100%}
+.dash-link{display:inline-flex; align-items:center; gap:8px; background:var(--panel); color:var(--ink); padding:8px 14px; border-radius:10px; text-decoration:none; font-weight:600}
+.live-dot{width:9px; height:9px; border-radius:50%; background:var(--good); box-shadow:0 0 0 0 var(--good); animation:ping 1.8s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 color-mix(in srgb, var(--good) 60%, transparent)}100%{box-shadow:0 0 0 10px transparent}}
+@media (max-width:860px){nav.menu{display:none}}
+@media (max-width:640px){.phone{display:none}.dash-card{margin:-70px 12px 0 12px}.stage{padding-bottom:0}}
+
+/* hero */
+.hero{padding-block:36px 64px; position:relative; overflow:hidden}
+.hero-bg{position:absolute; inset:0; z-index:-1; pointer-events:none; opacity:.55}
+.hero-bg i{position:absolute; border:1px solid var(--line); border-radius:12px; width:120px; height:150px; animation:drift 18s ease-in-out infinite}
+.hero-bg i::before{content:""; position:absolute; inset:22px 16px auto; height:4px; background:var(--line); border-radius:4px; box-shadow:0 14px 0 var(--line), 0 28px 0 var(--line), 0 42px 0 var(--line)}
+@keyframes drift{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-26px) rotate(calc(var(--r,0deg) + 6deg))}}
+.hero h1{font-weight:800; font-size:clamp(30px,4.2vw,52px); line-height:1.45; margin-block:18px}
+.hero h1 .w{display:inline-block; animation:wordIn .7s cubic-bezier(.2,.8,.2,1) both}
+.hero h1 .hl{color:var(--primary); position:relative}
+.hero h1 .hl::after{content:""; position:absolute; right:0; left:0; bottom:.08em; height:.18em; background:var(--accent); opacity:.45; border-radius:4px; transform-origin:right; animation:underline 1s 1.1s cubic-bezier(.2,.8,.2,1) both}
+@keyframes wordIn{from{opacity:0; transform:translateY(18px)}to{opacity:1; transform:none}}
+@keyframes underline{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.fade-up{animation:wordIn .8s cubic-bezier(.2,.8,.2,1) both}
+.checks{display:flex; flex-wrap:wrap; gap:18px; font-size:15px; color:var(--muted)}
+.checks div{display:flex; align-items:center; gap:6px}
+.stage{position:relative; padding-bottom:44px}
+.stage .ph{height:470px; animation:wordIn 1s .2s both}
+.dash-card{position:relative; margin:-120px 24px 0 196px; background:var(--surface); border-radius:18px; border:1px solid var(--line); box-shadow:0 24px 50px var(--shadow); overflow:hidden; animation:floatY 6s ease-in-out infinite}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.dash-card .bar{background:var(--deep); color:var(--on-deep); padding:10px 16px; display:flex; justify-content:space-between; font-size:13px; align-items:center}
+.kpis3{padding:16px; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px}
+.kpis3 div{border-radius:10px; padding:10px; transition:transform .4s}
+.kpis3 .lbl{font-size:12px; color:var(--soft)}
+.kpis3 .val{font-family:var(--f-display); font-weight:800; font-size:24px}
+.kpis3 .flash{animation:flash .9s}
+@keyframes flash{0%{transform:scale(1)}40%{transform:scale(1.12)}100%{transform:scale(1)}}
+.rows4{padding:0 16px 16px; display:flex; flex-direction:column; gap:9px; font-size:13px}
+.rows4 > div{display:flex; align-items:center; gap:10px}
+.rows4 .nm{flex:0 0 100px}
+.track{flex:1; height:8px; background:var(--line2); border-radius:99px; overflow:hidden}
+.track i{display:block; height:100%; border-radius:99px; transition:width 1s cubic-bezier(.2,.8,.2,1), background .4s}
+.rows4 .st{flex:0 0 64px; font-weight:600}
+.phone{position:absolute; left:-6px; bottom:0; width:200px; background:var(--deep); border-radius:30px; padding:9px; box-shadow:0 20px 40px var(--shadow); animation:floatY 7s 1s ease-in-out infinite}
+.phone .scr{background:var(--line2); border-radius:22px; overflow:hidden; font-size:12px; height:236px; display:flex; flex-direction:column}
+.phone .hd{background:var(--primary); color:var(--on-primary); padding:9px 12px; font-weight:600; display:flex; justify-content:space-between}
+.chat{padding:9px; display:flex; flex-direction:column; gap:6px; flex:1; overflow:hidden; justify-content:flex-end}
+.msg{background:var(--surface); color:var(--ink); border-radius:10px; padding:7px 8px; max-width:92%; transition:opacity .4s, transform .4s}
+.msg.me{align-self:flex-end; background:var(--panel2)}
+.msg.off{opacity:0; transform:translateY(8px); position:absolute; visibility:hidden}
+.chip-doc{display:inline-block; background:var(--surface); border-radius:6px; padding:6px 8px; color:var(--soft); margin-inline-end:4px}
+.typing{display:inline-flex; gap:3px} .typing i{width:5px; height:5px; border-radius:50%; background:var(--soft); animation:blink 1s infinite} .typing i:nth-child(2){animation-delay:.15s} .typing i:nth-child(3){animation-delay:.3s}
+@keyframes blink{0%,100%{opacity:.25}50%{opacity:1}}
+
+/* marquee */
+.marquee{background:var(--surface); border-block:1px solid var(--line); overflow:hidden; padding-block:14px}
+.marquee .lane{display:flex; gap:14px; width:max-content; animation:slide 38s linear infinite}
+.marquee:hover .lane{animation-play-state:paused}
+.marquee span{display:inline-flex; align-items:center; gap:8px; white-space:nowrap; background:var(--bg); border:1px solid var(--line); border-radius:99px; padding:6px 14px; font-weight:500; font-size:15px}
+.marquee span b{width:8px; height:8px; border-radius:50%; background:var(--accent)}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(50%)}}
+
+/* facts */
+.deep{background:var(--deep); color:var(--on-deep)}
+.facts-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:22px; flex:2 1 520px}
+.fact{border-top:2px solid var(--accent); padding-top:12px}
+.fact .n{font-family:var(--f-display); font-size:clamp(28px,3vw,38px); font-weight:800}
+.fact .d{color:var(--on-deep-muted); font-size:15px}
+
+/* calendar chart */
+.chart-fig{flex:2 1 560px; margin:0; padding:24px 20px 14px}
+.bars{display:flex; align-items:flex-end; gap:8px; height:230px; border-bottom:1px solid var(--line); position:relative}
+.bars .gl{position:absolute; inset-inline:0; border-top:1px dashed var(--line2); font-size:11px; color:var(--soft)}
+.bars .col{flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; gap:6px; position:relative; z-index:1}
+.bars .col b{font-size:14px}
+.bars .col i{width:100%; max-width:44px; border-radius:6px 6px 0 0; transform-origin:bottom; transition:transform 1s cubic-bezier(.2,.8,.2,1), filter .2s}
+.bars .col:hover i{filter:brightness(1.12)}
+.chart-fig.wait .col i{transform:scaleY(0)}
+.chart-fig.wait .col b{opacity:0}
+.bars .col b{transition:opacity .5s .6s}
+.mlabels{display:flex; gap:8px; margin-top:8px}
+.mlabels span{flex:1; text-align:center; font-size:12px; color:var(--soft)}
+.legend{display:flex; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--soft); margin-top:10px}
+.legend i{display:inline-block; width:10px; height:10px; border-radius:3px; margin-inline-end:6px; vertical-align:middle}
+
+/* timeline (e-invoice) */
+.phases{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; position:relative}
+.phase{border-radius:14px; padding:18px; position:relative; overflow:hidden}
+.phase .y{font-family:var(--f-display); font-weight:800; font-size:22px}
+.phase .t{font-weight:600; margin-block:4px}
+.phase p{color:var(--muted)}
+.phase.now::after{content:"دابا"; position:absolute; top:14px; left:14px; background:var(--accent); color:var(--on-accent); font-size:12px; font-weight:700; padding:2px 10px; border-radius:99px; animation:ping2 2s infinite}
+@keyframes ping2{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+
+/* before after */
+.ba{display:flex; flex-wrap:wrap; gap:24px}
+.ba > div{flex:1 1 440px; border-radius:18px; padding:26px; min-width:0}
+.ba ol{margin:0; padding-inline-start:22px; display:flex; flex-direction:column; gap:10px}
+.ba .before{background:var(--bg); color:var(--muted)}
+.ba .after{background:var(--deep); color:var(--on-deep-muted)}
+.ba .ph{height:360px; margin-bottom:18px}
+.ba li{transition:opacity .5s, transform .5s}
+
+/* features */
+.feat{margin-bottom:72px}
+.feat .tag{color:var(--accent-ink); font-weight:800; font-family:var(--f-display); font-size:18px}
+.feat h3{font-size:26px; margin-block:6px 12px}
+.feat ul{margin:0; padding-inline-start:20px; color:var(--muted); display:flex; flex-direction:column; gap:8px}
+.feat .ph{height:380px; margin-top:18px}
+.mock{flex:1 1 420px; padding:20px}
+.docs3{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px}
+.doc{border:1px solid var(--line); border-radius:12px; padding:12px; text-align:center; transition:all .5s}
+.doc.miss{border-style:dashed; border-color:var(--accent); background:var(--warn-bg)}
+.doc .s{font-size:12px}
+.doc.got{border-color:var(--primary); background:color-mix(in srgb, var(--primary) 8%, var(--surface))}
+.doc.pop{animation:flash .8s}
+.tl{display:flex; align-items:flex-start; position:relative; padding-top:4px}
+.tl .ln{position:absolute; top:11px; right:12.5%; left:12.5%; height:2px; background:var(--line)}
+.tl .ln i{position:absolute; right:0; top:0; height:100%; width:0; background:var(--primary); animation:fill 6s ease-in-out infinite}
+@keyframes fill{0%{width:0}70%,100%{width:100%}}
+.tl .st{flex:1; text-align:center; position:relative; z-index:1}
+.tl .dot{width:16px; height:16px; border-radius:50%; margin:0 auto 6px; border:3px solid var(--surface); animation:pulse 6s infinite}
+.tl .st:nth-child(3) .dot{animation-delay:1.4s}.tl .st:nth-child(4) .dot{animation-delay:2.8s}.tl .st:nth-child(5) .dot{animation-delay:4.2s}
+@keyframes pulse{0%,8%{transform:scale(1)}4%{transform:scale(1.5)}100%{transform:scale(1)}}
+.tl .st b{display:block; font-size:14px}
+.tl .st span{font-size:12px; color:var(--soft)}
+.qa{background:var(--deep); color:var(--on-deep)}
+.qa .bub{background:var(--deep2); border-radius:12px; padding:14px; margin-bottom:10px}
+.qa .bub div:last-child{color:var(--on-deep-muted); font-size:14px}
+.wave{display:inline-flex; gap:2px; align-items:center; height:16px; margin-inline-start:8px; vertical-align:middle}
+.wave i{width:3px; background:var(--accent); border-radius:2px; animation:wv 1.1s ease-in-out infinite}
+.wave i:nth-child(2n){animation-delay:.2s}.wave i:nth-child(3n){animation-delay:.4s}
+@keyframes wv{0%,100%{height:4px}50%{height:16px}}
+
+/* calc */
+.calc-grid{display:flex; flex-wrap:wrap; gap:32px}
+.calc-form{flex:1 1 360px; display:flex; flex-direction:column; gap:14px}
+.calc-form label{font-weight:600; display:flex; justify-content:space-between}
+.calc-form output{color:var(--primary); font-weight:700}
+input[type=range]{width:100%; accent-color:var(--primary); min-height:32px}
+.field{min-height:48px; border-radius:10px; border:1px solid var(--line); padding:0 14px; font-family:inherit; font-size:16px; background:var(--surface); color:var(--ink); width:100%}
+.res{flex:1 1 420px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; align-content:start}
+.res > div{background:var(--bg); border-radius:16px; padding:20px}
+.res .big{font-family:var(--f-display); font-size:clamp(28px,3vw,38px); font-weight:800}
+.res .wide{grid-column:1/-1; background:var(--deep); color:var(--on-deep)}
+.meter{height:10px; border-radius:99px; background:var(--line); overflow:hidden; margin-top:10px}
+.meter i{display:block; height:100%; background:var(--accent); transition:width .6s}
+
+/* security flow */
+.flow{display:flex; flex-wrap:wrap; align-items:stretch; gap:12px; margin-bottom:36px}
+.flow .nd{flex:1 1 170px; background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:16px; position:relative; overflow:hidden}
+.flow .nd.core{background:var(--deep); color:var(--on-deep); border-color:var(--deep)}
+.flow .nd.core div:last-child{color:var(--on-deep-muted)}
+.flow .nd div:last-child{font-size:14px; color:var(--muted)}
+.flow .nd::after{content:""; position:absolute; inset:0; background:linear-gradient(270deg, transparent, color-mix(in srgb, var(--accent) 22%, transparent), transparent); transform:translateX(100%); animation:sweep 7.5s infinite}
+.flow .nd:nth-of-type(2)::after{animation-delay:1.5s}.flow .nd:nth-of-type(3)::after{animation-delay:3s}.flow .nd:nth-of-type(4)::after{animation-delay:4.5s}.flow .nd:nth-of-type(5)::after{animation-delay:6s}
+@keyframes sweep{0%{transform:translateX(100%)}20%,100%{transform:translateX(-100%)}}
+.flow .ar{flex:0 0 24px; display:grid; place-items:center; color:var(--soft)}
+.tbl-wrap{overflow-x:auto}
+table.t{width:100%; border-collapse:collapse; min-width:640px; background:var(--surface); border:1px solid var(--line)}
+table.t th, table.t td{padding:14px; text-align:right}
+table.t thead tr{background:var(--panel)}
+table.t tbody tr{border-top:1px solid var(--line2); transition:background .2s}
+table.t tbody tr:hover{background:var(--bg)}
+table.t td.k{font-weight:600}
+table.t td.v{color:var(--muted)}
+
+/* onboarding */
+.steps{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; position:relative}
+.step{background:var(--deep2); border-radius:16px; padding:20px; transition:transform .3s}
+.step:hover{transform:translateY(-4px)}
+.step .w{color:var(--accent); font-weight:800}
+.step .t{font-weight:600; margin-block:6px; color:var(--on-deep)}
+.step p{color:var(--on-deep-muted); font-size:15px}
+
+/* pricing */
+table.price{min-width:720px}
+table.price th, table.price td{text-align:center}
+table.price td:first-child, table.price th:first-child{text-align:right}
+table.price .hot{background:var(--deep); color:var(--on-deep)}
+table.price td.hotc{background:color-mix(in srgb, var(--primary) 7%, var(--surface))}
+.pr{font-family:var(--f-display); font-size:28px; font-weight:800}
+
+/* pilot form */
+.pilot{background:var(--deep); color:var(--on-deep); border-radius:24px; padding:clamp(22px,4vw,44px); display:flex; flex-wrap:wrap; gap:32px; align-items:center; justify-content:space-between}
+.pilot > div, .pilot form{min-width:0}
+.pilot form{flex:1 1 360px; display:flex; flex-direction:column; gap:8px}
+.pilot label{font-weight:600}
+.pilot .field{background:var(--deep2); color:var(--on-deep); border-color:color-mix(in srgb, var(--on-deep) 25%, transparent)}
+.pilot .err{color:var(--accent); font-size:14px; min-height:1.4em}
+.ok-box{background:var(--deep2); border-radius:16px; padding:24px; text-align:center}
+.ok-box svg{margin-inline:auto}
+.ok-box .ck{stroke-dasharray:40; stroke-dashoffset:40; animation:draw .7s .2s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+details.q{background:var(--surface); border-radius:14px; padding:18px 22px; border:1px solid var(--line)}
+details.q summary{font-weight:600; font-size:18px; cursor:pointer}
+details.q p{margin-top:10px; color:var(--muted)}
+details.q[open]{border-color:var(--primary)}
+footer.ft .wrap{display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; color:var(--soft); font-size:15px; padding-block:28px}
+footer.ft{border-top:1px solid var(--line)}
+
+/* scroll reveal — content is visible at rest; JS only offsets elements still below the fold */
+.rv{transition:opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1)}
+.rv.wait{opacity:0; transform:translateY(34px)}
+.rv.wait.from-side{transform:translateX(-40px)}
+.stagger > *{transition:opacity .6s, transform .6s}
+.stagger.wait > *{opacity:0; transform:translateY(20px)}
+
+/* ========== DASHBOARD ========== */
+#dash{padding-block:24px 60px}
+.d-head{display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:center; margin-bottom:20px}
+.d-head h1{font-size:clamp(22px,2.6vw,30px)}
+.seg{display:inline-flex; background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:4px; gap:4px}
+.seg button{border:0; background:transparent; color:var(--muted); font-family:inherit; font-weight:600; font-size:14px; padding:8px 14px; border-radius:9px; cursor:pointer; min-height:38px}
+.seg button[aria-pressed="true"]{background:var(--deep); color:var(--on-deep)}
+.demo-flag{background:var(--warn-bg); color:var(--warn); border-radius:12px; padding:10px 16px; font-weight:600; margin-bottom:16px; display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+.d-kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-bottom:18px}
+.kpi{padding:18px; position:relative; overflow:hidden}
+.kpi .l{color:var(--soft); font-size:14px; display:flex; align-items:center; gap:8px}
+.kpi .l i{width:30px; height:30px; border-radius:9px; display:grid; place-items:center}
+.kpi .v{font-family:var(--f-display); font-weight:800; font-size:32px; margin-top:6px}
+.kpi .sub{font-size:13px; color:var(--soft)}
+.kpi svg.spark{position:absolute; left:12px; bottom:12px; width:90px; height:34px}
+.d-grid{display:grid; grid-template-columns:minmax(0,2fr) minmax(0,1fr); gap:18px; margin-bottom:18px}
+@media (max-width:900px){.d-grid{grid-template-columns:minmax(0,1fr)}}
+.panel{padding:20px; min-width:0}
+.panel h2{font-size:18px; margin-bottom:4px}
+.panel .hint{font-size:13px; color:var(--soft); margin-bottom:12px}
+.chart-box{width:100%; overflow:hidden}
+.chart-box svg{width:100%; height:auto; display:block}
+.ax{fill:var(--soft); font-size:11px; font-family:var(--f-body)}
+.grid-l{stroke:var(--line2)}
+.donut-wrap{display:flex; align-items:center; gap:18px; flex-wrap:wrap}
+.donut-wrap svg{width:160px; height:160px; flex:0 0 160px}
+.lg{display:flex; flex-direction:column; gap:8px; font-size:14px; flex:1; min-width:140px}
+.lg div{display:flex; align-items:center; gap:8px}
+.lg i{width:10px; height:10px; border-radius:3px}
+.lg b{margin-inline-start:auto}
+.fun{display:flex; flex-direction:column; gap:12px}
+.fun .r{display:grid; grid-template-columns:150px minmax(0,1fr) 90px; gap:10px; align-items:center; font-size:14px}
+@media (max-width:520px){.fun .r{grid-template-columns:minmax(0,1fr) 70px}.fun .r .tr{grid-column:1/-1; order:3}}
+.fun .tr{height:26px; background:var(--line2); border-radius:8px; overflow:hidden}
+.fun .tr i{display:block; height:100%; border-radius:8px; background:var(--primary); transition:width 1s cubic-bezier(.2,.8,.2,1)}
+.fun .r:nth-child(n+4) .tr i{background:var(--accent)}
+.fun .r:last-child .tr i{background:var(--good)}
+.fun .pc{font-weight:700; text-align:left}
+.list .it{display:flex; align-items:center; gap:10px; padding-block:8px; border-top:1px solid var(--line2); font-size:14px}
+.list .it:first-child{border-top:0}
+.list .it .bar{flex:1; height:6px; background:var(--line2); border-radius:99px; overflow:hidden}
+.list .it .bar i{display:block; height:100%; background:var(--primary)}
+.list .it .nm{flex:0 0 120px}
+.list .it b{flex:0 0 44px; text-align:left}
+.feed{display:flex; flex-direction:column; gap:8px; max-height:300px; overflow:auto}
+.feed .e{display:flex; gap:10px; align-items:flex-start; font-size:14px; padding:8px 10px; border-radius:10px; background:var(--bg); animation:wordIn .5s both}
+.feed .e .ic{flex:0 0 28px; height:28px; border-radius:8px; display:grid; place-items:center; background:var(--panel)}
+.feed .e .tm{margin-inline-start:auto; color:var(--soft); font-size:12px; white-space:nowrap}
+.pill{display:inline-block; border-radius:99px; padding:2px 10px; font-size:12px; font-weight:700}
+.p-new{background:var(--panel2); color:var(--primary)}
+.p-call{background:var(--warn-bg); color:var(--warn)}
+.p-trial{background:var(--good-bg); color:var(--good)}
+.p-no{background:var(--bad-bg); color:var(--bad)}
+table.leads{min-width:760px; border-radius:12px; overflow:hidden}
+table.leads td, table.leads th{padding:12px; font-size:14px}
+table.leads select{min-height:36px; border-radius:8px; border:1px solid var(--line); background:var(--surface); color:var(--ink); font-family:inherit; padding:0 8px}
+.empty{text-align:center; padding:40px 20px; color:var(--soft)}
+.empty svg{margin:0 auto 12px}
+.tip{background:var(--panel); border-radius:14px; padding:14px 18px; font-size:14px; color:var(--muted)}
+.tip code{background:var(--surface); padding:1px 6px; border-radius:6px; direction:ltr; display:inline-block}
+.toast{position:fixed; bottom:calc(20px + env(safe-area-inset-bottom,0px)); left:max(20px, env(safe-area-inset-left,0px)); background:var(--deep); color:var(--on-deep); padding:12px 18px; border-radius:12px; box-shadow:0 10px 30px var(--shadow); z-index:80; animation:wordIn .4s both}
+
+
+/* ===== motion layer: images ===== */
+.ph-wrap{position:relative; overflow:hidden; border-radius:16px; background:var(--panel); display:block; max-width:100%; isolation:isolate; transition:box-shadow .4s, transform .4s, opacity .8s}
+.ph-wrap > img{width:100% !important; height:100% !important; animation-delay:0s; object-fit:cover; display:block; border-radius:0 !important; margin:0 !important; scale:1.12; translate:0 var(--py,0px); animation:kb 22s ease-in-out infinite alternate; will-change:scale, translate; transition:filter .5s}
+.ph-wrap:nth-of-type(odd) > img, .ph-wrap.alt > img{animation-name:kb2; animation-duration:26s}
+@keyframes kb{0%{scale:1.12; transform-origin:30% 40%}100%{scale:1.22; transform-origin:70% 60%}}
+@keyframes kb2{0%{scale:1.2; transform-origin:70% 30%}100%{scale:1.12; transform-origin:35% 65%}}
+.ph-wrap::after{content:""; position:absolute; inset:0; background:linear-gradient(105deg, transparent 40%, rgba(255,255,255,.28) 50%, transparent 60%); transform:translateX(120%); transition:transform 1.1s ease; pointer-events:none}
+.ph-wrap:hover::after{transform:translateX(-120%)}
+.ph-wrap:hover{box-shadow:0 18px 40px var(--shadow)}
+.ph-wrap:hover > img{filter:saturate(1.12) contrast(1.04)}
+.ph-wrap::before{content:""; position:absolute; inset:0; z-index:2; background:linear-gradient(90deg, var(--panel), var(--panel2)); transform-origin:left center; transform:scaleX(0); transition:transform 1.15s cubic-bezier(.7,0,.2,1); pointer-events:none}
+.ph-wrap.wipe::before{transform:scaleX(1)}
+.ph-wrap.wipe > img{scale:1.3}
+@media (max-width:640px){.ph-wrap{height:auto !important; aspect-ratio:4/3}}
+/* ===== motion layer: everything else ===== */
+.deep{position:relative; overflow:hidden}
+.deep::before{content:""; position:absolute; width:520px; height:520px; border-radius:50%; background:radial-gradient(circle, color-mix(in srgb, var(--primary) 45%, transparent), transparent 70%); top:-180px; left:-160px; animation:orb 16s ease-in-out infinite alternate; pointer-events:none; opacity:.55}
+.deep::after{content:""; position:absolute; width:380px; height:380px; border-radius:50%; background:radial-gradient(circle, color-mix(in srgb, var(--accent) 30%, transparent), transparent 70%); bottom:-160px; right:-120px; animation:orb 20s ease-in-out infinite alternate-reverse; pointer-events:none; opacity:.45}
+.deep > .wrap{position:relative; z-index:1}
+@keyframes orb{0%{transform:translate(0,0) scale(1)}100%{transform:translate(140px,90px) scale(1.25)}}
+.card, .fact, .doc, .step, .phase, .flow .nd, .res > div, .msg, .bub{transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s}
+.card:hover, .phase:hover, .flow .nd:hover, .res > div:hover{transform:translateY(-5px); box-shadow:0 16px 34px var(--shadow)}
+.fact .n{display:inline-block; transition:transform .3s}
+.fact:hover .n{transform:scale(1.06)}
+.fact{position:relative}
+.fact::before{content:""; position:absolute; top:-2px; right:0; height:2px; width:0; background:var(--on-deep); animation:factline 4s ease-in-out infinite}
+.fact:nth-child(2)::before{animation-delay:1s}.fact:nth-child(3)::before{animation-delay:2s}.fact:nth-child(4)::before{animation-delay:3s}
+@keyframes factline{0%{width:0; opacity:1}50%{width:100%; opacity:1}100%{width:100%; opacity:0}}
+h2.rv, .feat h3{background:linear-gradient(var(--accent),var(--accent)) no-repeat right bottom / 0 3px; padding-bottom:6px; transition:background-size 1s .3s cubic-bezier(.2,.8,.2,1), opacity .8s, transform .8s}
+h2.rv:not(.wait), .rv:not(.wait) h3{background-size:72px 3px}
+.deep h2.rv:not(.wait){background-size:72px 3px}
+table.t tbody tr td.k{position:relative}
+table.t tbody tr:hover td.k{color:var(--primary)}
+table.price th.hot{position:relative; animation:hotglow 3s ease-in-out infinite}
+@keyframes hotglow{0%,100%{box-shadow:inset 0 0 0 0 transparent}50%{box-shadow:inset 0 -4px 0 0 var(--accent)}}
+details.q p{animation:none}
+details.q[open] p{animation:wordIn .45s both}
+details.q summary{transition:color .2s}
+details.q summary:hover{color:var(--primary)}
+.btn-main, .btn-amber{position:relative; overflow:hidden}
+.btn-main::after, .btn-amber::after{content:""; position:absolute; inset:0; background:linear-gradient(105deg, transparent 35%, rgba(255,255,255,.35) 50%, transparent 65%); transform:translateX(130%); animation:btnshine 4.5s ease-in-out infinite}
+@keyframes btnshine{0%,70%{transform:translateX(130%)}100%{transform:translateX(-130%)}}
+.step .w{display:inline-block; animation:ping2 3s ease-in-out infinite}
+.step:nth-child(2) .w{animation-delay:.75s}.step:nth-child(3) .w{animation-delay:1.5s}.step:nth-child(4) .w{animation-delay:2.25s}
+.phase .y{display:inline-block; transition:transform .3s}
+.phase:hover .y{transform:translateX(-6px)}
+.eyebrow{position:relative; overflow:hidden}
+.eyebrow::after{content:""; position:absolute; inset:0; background:linear-gradient(105deg, transparent 40%, rgba(255,255,255,.6) 50%, transparent 60%); transform:translateX(130%); animation:btnshine 6s 2s ease-in-out infinite}
+.feat ul li::marker{color:var(--accent)}
+.ba .after li::marker{color:var(--accent)}
+.ba .before li::marker{color:var(--bad)}
+.calc-form output{display:inline-block; transition:transform .2s}
+.calc-form output.bump{animation:flash .35s}
+.marquee span{transition:transform .25s, background .25s}
+.marquee span:hover{transform:translateY(-3px); background:var(--panel)}
+@media (prefers-reduced-motion: reduce){
+  .ph-wrap > img{animation:none; scale:1.05; translate:none}
+  .ph-wrap.wipe::before{transform:scaleX(0)}
+  .deep::before,.deep::after,.btn-main::after,.btn-amber::after,.eyebrow::after,.fact::before{animation:none; display:none}
+}
+
+
+/* brand + footer */
+.brand-logo{width:52px; height:52px; border-radius:50%; display:block; flex:0 0 52px; box-shadow:0 0 0 2px var(--surface), 0 6px 18px rgba(35,70,200,.35); animation:logoGlow 4s ease-in-out infinite; transition:transform .4s}
+.logo:hover .brand-logo{transform:rotate(-8deg) scale(1.06)}
+@keyframes logoGlow{0%,100%{box-shadow:0 0 0 2px var(--surface), 0 6px 18px rgba(35,70,200,.30)}50%{box-shadow:0 0 0 2px var(--surface), 0 6px 26px rgba(56,140,255,.6)}}
+footer.site{background:#0A1230; color:#DCE4FF; position:relative; overflow:hidden; margin-top:20px}
+footer.site::before{content:""; position:absolute; top:0; inset-inline:0; height:3px; background:linear-gradient(90deg, transparent, #3B8BFF, #E3A21A, #3B8BFF, transparent); background-size:200% 100%; animation:ftline 6s linear infinite}
+@keyframes ftline{from{background-position:0 0}to{background-position:200% 0}}
+footer.site::after{content:""; position:absolute; width:560px; height:560px; border-radius:50%; background:radial-gradient(circle, rgba(59,139,255,.22), transparent 70%); top:-260px; right:-180px; pointer-events:none; animation:orb 18s ease-in-out infinite alternate}
+.ft-grid{position:relative; z-index:1; display:grid; grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(0,1fr)) minmax(0,1.2fr); gap:36px; padding-block:64px 40px}
+@media (max-width:900px){.ft-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+@media (max-width:560px){.ft-grid{grid-template-columns:minmax(0,1fr)}}
+.ft-brand img{width:112px; height:112px; border-radius:50%; box-shadow:0 0 34px rgba(59,139,255,.45); animation:logoGlow2 5s ease-in-out infinite}
+@keyframes logoGlow2{0%,100%{box-shadow:0 0 24px rgba(59,139,255,.35)}50%{box-shadow:0 0 44px rgba(59,139,255,.7)}}
+.ft-brand .nm{font-family:var(--f-display); font-weight:800; font-size:22px; color:#FFFFFF; margin-top:14px}
+.ft-brand .tg{color:#8FB6FF; font-weight:600; margin-top:2px}
+.ft-brand p{color:#AEBBE0; font-size:15px; margin-top:10px; max-width:36ch}
+footer.site h3{font-family:var(--f-display); font-size:16px; color:#FFFFFF; margin-bottom:14px}
+.ft-links{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px}
+.ft-links a{color:#C9D4F5; text-decoration:none; position:relative; transition:color .2s, padding .25s}
+.ft-links a:hover{color:#FFFFFF; padding-inline-start:6px}
+.ft-links a::before{content:""; position:absolute; right:-12px; top:50%; width:5px; height:5px; border-radius:50%; background:#E3A21A; transform:translateY(-50%) scale(0); transition:transform .25s}
+.ft-links a:hover::before{transform:translateY(-50%) scale(1)}
+.ft-src li{color:#AEBBE0; font-size:14px}
+.ft-cta{background:rgba(255,255,255,.05); border:1px solid rgba(143,182,255,.22); border-radius:18px; padding:22px}
+.ft-cta p{color:#C9D4F5; font-size:15px; margin:6px 0 16px}
+.ft-cta .btn{width:100%}
+.ft-trust{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px}
+.ft-trust span{font-size:12px; color:#C9D4F5; border:1px solid rgba(143,182,255,.25); border-radius:99px; padding:3px 10px}
+.ft-bottom{position:relative; z-index:1; border-top:1px solid rgba(143,182,255,.16); display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; padding-block:20px; font-size:14px; color:#93A3CF}
+.to-top{display:inline-flex; align-items:center; gap:6px; color:#DCE4FF; text-decoration:none; border:1px solid rgba(143,182,255,.3); border-radius:99px; padding:6px 14px; transition:background .2s, transform .2s}
+.to-top:hover{background:rgba(255,255,255,.08); color:#FFFFFF; transform:translateY(-2px)}
+.to-top svg{animation:bob 2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@media (prefers-reduced-motion: reduce){.brand-logo,.ft-brand img,footer.site::before,footer.site::after,.to-top svg{animation:none}}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important}
+  .rv.wait,.stagger.wait > *{opacity:1; transform:none}
+  .chart-fig.wait .col i{transform:none}
+  .marquee .lane{animation:none}
+  html{scroll-behavior:auto}
+}
+</style>
+
+<div id="progress"></div>
+<header class="top" id="topbar">
+  <div class="wrap">
+    <a class="logo" href="./" aria-label="رفيق المكتب، الصفحة الرئيسية">
+      <img class="brand-logo" src="logo.webp" alt="شعار رفيق" width="52" height="52">
+      <span>رفيق <b>المكتب</b></span>
+    </a>
+    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap">
+      <span class="dash-link"><span class="live-dot"></span>لوحة الزوار</span>
+    </div>
+  </div>
+</header>
+
+<!-- ========== DASHBOARD VIEW ========== -->
+<main id="dash" class="wrap">
+  <section class="card panel" id="keyBox" hidden style="max-width:520px; margin:40px auto">
+    <h1 style="font-size:24px; margin-bottom:8px">لوحة الزوار</h1>
+    <p class="small" style="font-size:15px; margin-bottom:16px">دخل المفتاح لي كاين فورقة «الإعدادات» فالشيت ديال رفيق. كيتحفظ فهاد المتصفح، وما غاديش يطلبو منك مرة أخرى.</p>
+    <form id="keyForm" style="display:flex; flex-direction:column; gap:10px">
+      <label for="keyIn" style="font-weight:600">المفتاح</label>
+      <input id="keyIn" class="field" type="password" autocomplete="off" style="direction:ltr">
+      <div class="small" id="keyErr" role="alert" style="color:var(--bad)"></div>
+      <button type="submit" class="btn btn-main">حل اللوحة</button>
+    </form>
+  </section>
+  <div id="dashBody">
+  <div class="d-head">
+    <div>
+      <h1>لوحة الزوار والطلبات</h1>
+      <div class="small" id="dSub"><span class="live-dot" style="display:inline-block; margin-inline-end:6px"></span>من Google Sheet، كتتحدث كل دقيقة</div>
+    </div>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center">
+      <div class="seg" role="group" aria-label="الفترة">
+        <button type="button" data-range="7" aria-pressed="true">7 أيام</button>
+        <button type="button" data-range="30" aria-pressed="false">30 يوم</button>
+        <button type="button" data-range="0" aria-pressed="false">الكل</button>
+      </div>
+      <div class="seg" role="group" aria-label="مصدر المعطيات">
+        <button type="button" id="srcReal" aria-pressed="true">الزوار الحقيقيين</button>
+        <button type="button" id="srcDemo" aria-pressed="false">مثال توضيحي</button>
+      </div>
+      <a href="./" class="btn btn-ghost" style="min-height:42px; font-size:15px">شوف الصفحة</a>
+    </div>
+  </div>
+
+  <div class="demo-flag" id="demoFlag" hidden>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg>
+    هادي أرقام مثال باش تشوف شكل اللوحة، ماشي زوار حقيقيين.
+  </div>
+
+  <div class="d-kpis" id="kpis"></div>
+
+  <div class="d-grid">
+    <section class="card panel">
+      <h2>الزيارات والطلبات كل نهار</h2>
+      <div class="hint">الخط الأزرق: الزيارات · الخط الأصفر: طلبات التجربة</div>
+      <div class="chart-box" id="lineChart"></div>
+    </section>
+    <section class="card panel">
+      <h2>الأجهزة</h2>
+      <div class="hint">من شنو دخلو الزوار</div>
+      <div class="donut-wrap" id="donut"></div>
+    </section>
+  </div>
+
+  <div class="d-grid">
+    <section class="card panel">
+      <h2>مسار الزائر فالصفحة</h2>
+      <div class="hint">شحال وصلو لكل مرحلة، من الدخول حتى الطلب</div>
+      <div class="fun" id="funnel"></div>
+    </section>
+    <section class="card panel">
+      <h2>آخر الحركات</h2>
+      <div class="hint">زيارات وطلبات، مباشرة</div>
+      <div class="feed" id="feed"></div>
+    </section>
+  </div>
+
+  <div class="d-grid" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr)">
+    <section class="card panel">
+      <h2>منين جاو</h2>
+      <div class="hint">حسب الرابط لي دخلو منو</div>
+      <div class="list" id="sources"></div>
+    </section>
+    <section class="card panel">
+      <h2>المدن لي كتبو فالطلبات</h2>
+      <div class="hint">من خانة «المدينة» فالاستمارة</div>
+      <div class="list" id="cities"></div>
+    </section>
+  </div>
+
+  <section class="card panel" style="margin-bottom:18px">
+    <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; align-items:baseline">
+      <div><h2>طلبات التجربة</h2><div class="hint">بدل الحالة ملي تتاصل بالمكتب</div></div>
+      <div class="small num" id="leadCount"></div>
+    </div>
+    <div class="tbl-wrap" id="leadsBox"></div>
+  </section>
+
+  <div class="tip">
+    باش تعرف المصدر ديال كل زائر، زيد كلمة فآخر الرابط لي كتنشر: <code>#from-facebook</code> ولا <code>#from-tiktok</code> ولا <code>#from-whatsapp</code>. المعطيات كاملة كتتسجل فالشيت ديال رفيق، والزيارات من هاد المتصفح ما كتتحسبش.
+  </div>
+  </div>
+</main>
+
+<script>
+(() => {
+'use strict';
+document.documentElement.lang = 'ar'; document.documentElement.dir = 'rtl';
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fmt = n => Math.round(n).toLocaleString('de-DE');
+
+const API = 'https://script.google.com/macros/s/AKfycbyPf9mVM-Jsvcp4BKUaMb9_1dW4oKh1pu0VgI5Sg6skoDbVKlJpXYO61BrRMiyqdst5Rg/exec';
+const ls = { get(k){ try { return localStorage.getItem(k); } catch (_) { return null; } }, set(k,v){ try { localStorage.setItem(k,v); } catch (_) {} } };
+const rid = () => Math.random().toString(36).slice(2,12);
+function post(o){ try { return fetch(API, {method:'POST', mode:'no-cors', keepalive:true, headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(o)}); } catch (_) { return Promise.reject(); } }
+/* ========== DASHBOARD ========== */
+const view = { range: 7, demo: false, sessions: [], leads: [], editor: false };
+const devName = {mob: 'الهاتف', desk: 'الحاسوب', tab: 'اللوحة'};
+const devCol = {mob: 'var(--primary)', desk: 'var(--accent)', tab: 'var(--good)'};
+const srcName = s => ({direct: 'مباشر', facebook: 'Facebook', fb: 'Facebook', instagram: 'Instagram', ig: 'Instagram', linkedin: 'LinkedIn', whatsapp: 'WhatsApp', wa: 'WhatsApp', google: 'Google', email: 'الإيميل', tiktok: 'TikTok'}[s] || s);
+const stName = {new: 'جديد', call: 'تاصلنا', trial: 'فالتجربة', no: 'ما مهتمش'};
+const stCls = {new: 'p-new', call: 'p-call', trial: 'p-trial', no: 'p-no'};
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const dayKey = d => d.toLocaleDateString('en-CA');
+const ago = ts => { const m = Math.round((Date.now() - ts) / 60000); if (m < 1) return 'دابا'; if (m < 60) return 'قبل ' + m + ' دقيقة'; const h = Math.round(m/60); if (h < 24) return 'قبل ' + h + ' ساعة'; return 'قبل ' + Math.round(h/24) + ' يوم'; };
+
+function demoData(){
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const sessions = [], leads = []; const now = Date.now(); const srcs = ['direct','facebook','linkedin','whatsapp','google']; const cities = ['الدار البيضاء','الرباط','فاس','طنجة','مراكش','أكادير'];
+  const offices = ['مكتب النور للمحاسبة','فيدوسيار الأطلس','مكتب الخبرة','فيدوسيار المدينة','مكتب الأمانة','مكتب السلام','فيدوسيار الشمال','مكتب الريادة'];
+  for (let d = 29; d >= 0; d--) {
+    const n = Math.round(14 + rnd()*22 + (29-d)*0.6);
+    for (let i = 0; i < n; i++) {
+      const ts = now - d*864e5 - rnd()*864e5*0.9; const r = rnd();
+      const st = {v:1}; if (r < .62) st.s50 = 1; if (r < .41) st.price = 1; if (r < .14) st.form = 1; if (r < .06) st.sub = 1;
+      const dev = rnd() < .64 ? 'mob' : (rnd() < .85 ? 'desk' : 'tab'); const src = srcs[Math.floor(Math.pow(rnd(),1.6)*srcs.length)];
+      sessions.push({id:'d'+d+'_'+i, visits:[{ts, day: dayKey(new Date(ts)), dev, src, st}]});
+      if (st.sub) leads.push({id:'L'+d+'_'+i, ts, day: dayKey(new Date(ts)), office: offices[Math.floor(rnd()*offices.length)], city: cities[Math.floor(Math.pow(rnd(),1.3)*cities.length)], files: 40 + Math.round(rnd()*240), tel: '06•• •• •• ' + String(10+Math.floor(rnd()*89)), dev, src, status: d > 6 ? (rnd()<.5?'trial':(rnd()<.6?'call':'no')) : (d > 2 ? 'call' : 'new')});
+    }
+  }
+  return {sessions, leads};
+}
+
+function currentData(){
+  const base = view.demo ? demoData() : {sessions: view.sessions, leads: view.leads};
+  const since = view.range ? Date.now() - view.range*864e5 : 0;
+  const visits = []; base.sessions.forEach(s => (s.visits || []).forEach(v => { if (v && v.ts >= since) visits.push(v); }));
+  const leads = base.leads.filter(l => l.ts >= since).sort((a,b) => b.ts - a.ts);
+  return {visits, leads, visitors: base.sessions.filter(s => (s.visits||[]).some(v => v.ts >= since)).length};
+}
+
+function spark(vals, col){
+  if (vals.length < 2) return ''; const mx = Math.max(1, ...vals); const w = 90, h = 34;
+  const pts = vals.map((v,i) => [(i/(vals.length-1))*w, h - 3 - v/mx*(h-6)]);
+  const d = pts.map((p,i) => (i?'L':'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
+  return `<svg class="spark" viewBox="0 0 ${w} ${h}" aria-hidden="true"><path d="${d} L${w} ${h} L0 ${h}Z" fill="${col}" opacity=".12"/><path d="${d}" fill="none" stroke="${col}" stroke-width="2" stroke-linecap="round"/></svg>`;
+}
+
+function render(){
+  if ($('#dash').hidden) return;
+  $('#demoFlag').hidden = !view.demo;
+  const {visits, leads, visitors} = currentData();
+  const days = view.range || Math.max(7, Math.min(60, Math.ceil((Date.now() - Math.min(Date.now(), ...visits.map(v=>v.ts), ...leads.map(l=>l.ts))) / 864e5) + 1));
+  const keys = []; for (let i = days - 1; i >= 0; i--) keys.push(dayKey(new Date(Date.now() - i*864e5)));
+  const vBy = Object.fromEntries(keys.map(k => [k, 0])), lBy = Object.fromEntries(keys.map(k => [k, 0]));
+  visits.forEach(v => { if (v.day in vBy) vBy[v.day]++; }); leads.forEach(l => { if (l.day in lBy) lBy[l.day]++; });
+  const vs = keys.map(k => vBy[k]), ls = keys.map(k => lBy[k]);
+  const subs = visits.filter(v => v.st && v.st.sub).length;
+  const conv = visits.length ? (leads.length / visits.length * 100) : 0;
+  const deep = visits.length ? visits.filter(v => v.st && v.st.s50).length / visits.length * 100 : 0;
+
+  // KPIs
+  const icon = (p, bg, c) => `<i style="background:${bg}; color:${c}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">${p}</svg></i>`;
+  $('#kpis').innerHTML = [
+    ['الزيارات', fmt(visits.length), `${fmt(visitors)} زائر مختلف`, icon('<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>','var(--panel2)','var(--primary)'), spark(vs,'var(--primary)')],
+    ['طلبات التجربة', fmt(leads.length), leads.filter(l => (l.status||'new') === 'new').length + ' جديدة ما تاصلناش بيها', icon('<path d="M4 4h16v16H4z"/><path d="m4 7 8 6 8-6"/>','var(--warn-bg)','var(--warn)'), spark(ls,'var(--accent)')],
+    ['معدل التحويل', conv.toFixed(1).replace('.', ',') + '%', 'طلب لكل 100 زيارة', icon('<path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/>','var(--good-bg)','var(--good)'), ''],
+    ['قراو نص الصفحة', Math.round(deep) + '%', 'من الزوار نزلو حتى النص', icon('<path d="M12 5v14M5 12l7 7 7-7"/>','var(--panel)','var(--ink)'), '']
+  ].map(([l,v,s,ic,sp]) => `<div class="card kpi"><div class="l">${ic}${l}</div><div class="v num">${v}</div><div class="sub">${s}</div>${sp}</div>`).join('');
+
+  // line chart
+  const W = 640, H = 240, pl = 34, pr = 24, pt = 14, pb = 28; const mx = Math.max(4, ...vs, ...ls); const nice = Math.ceil(mx / 4) * 4;
+  const x = i => pl + (keys.length === 1 ? 0 : i/(keys.length-1)) * (W - pl - pr), y = v => pt + (1 - v/nice) * (H - pt - pb);
+  const path = arr => arr.map((v,i) => (i?'L':'M') + x(i).toFixed(1) + ' ' + y(v).toFixed(1)).join(' ');
+  let g = ''; for (let t = 0; t <= 4; t++) { const v = nice*t/4; g += `<line class="grid-l" x1="${pl}" x2="${W-pr}" y1="${y(v)}" y2="${y(v)}"/><text class="ax" x="${pl-6}" y="${y(v)+4}" text-anchor="end">${v}</text>`; }
+  const every = Math.ceil(keys.length / 7); keys.forEach((k,i) => { if (i % every === 0 || i === keys.length-1) g += `<text class="ax" x="${x(i)}" y="${H-8}" text-anchor="middle">${k.slice(8)}/${k.slice(5,7)}</text>`; });
+  const lastI = keys.length - 1;
+  $('#lineChart').innerHTML = `<svg viewBox="0 0 ${W} ${H}" dir="ltr" role="img" aria-label="رسم الزيارات والطلبات اليومية">${g}
+    <path d="${path(vs)} L${x(lastI)} ${y(0)} L${x(0)} ${y(0)}Z" fill="var(--primary)" opacity=".1"/>
+    <path class="ln-anim" d="${path(vs)}" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <path class="ln-anim" d="${path(ls)}" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="${x(lastI)}" cy="${y(vs[lastI])}" r="4.5" fill="var(--primary)" stroke="var(--surface)" stroke-width="2"/>
+    <circle cx="${x(lastI)}" cy="${y(ls[lastI])}" r="4.5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2"/></svg>`;
+  if (!reduce) $$('#lineChart .ln-anim').forEach(p => { const len = p.getTotalLength(); p.style.strokeDasharray = len; p.style.strokeDashoffset = len; p.getBoundingClientRect(); p.style.transition = 'stroke-dashoffset 1.2s cubic-bezier(.2,.8,.2,1)'; p.style.strokeDashoffset = 0; });
+
+  // donut
+  const dc = {mob:0, desk:0, tab:0}; visits.forEach(v => { if (v.dev in dc) dc[v.dev]++; }); const tot = visits.length || 1;
+  let acc = 0; const R = 60, C = 2*Math.PI*R; let arcs = '';
+  Object.keys(dc).forEach(k => { const f = dc[k]/tot; if (f > 0) arcs += `<circle cx="80" cy="80" r="${R}" fill="none" stroke="${devCol[k]}" stroke-width="22" stroke-dasharray="${(f*C).toFixed(1)} ${C.toFixed(1)}" stroke-dashoffset="${(-acc*C).toFixed(1)}" transform="rotate(-90 80 80)"/>`; acc += f; });
+  $('#donut').innerHTML = `<svg viewBox="0 0 160 160" role="img" aria-label="توزيع الأجهزة"><circle cx="80" cy="80" r="${R}" fill="none" stroke="var(--line2)" stroke-width="22"/>${arcs}<text x="80" y="78" text-anchor="middle" style="font:800 24px var(--f-display); fill:var(--ink)">${fmt(visits.length)}</text><text x="80" y="98" text-anchor="middle" class="ax">زيارة</text></svg>
+    <div class="lg">${Object.keys(dc).map(k => `<div><i style="background:${devCol[k]}"></i>${devName[k]}<b class="num">${Math.round(dc[k]/tot*100)}%</b></div>`).join('')}</div>`;
+
+  // funnel
+  const F = [['دخلو للصفحة','v'],['نزلو حتى النص','s50'],['وصلو للثمن','price'],['بداو يعمرو الاستمارة','form'],['صيفطو الطلب','sub']];
+  const base = visits.length || 1;
+  $('#funnel').innerHTML = F.map(([l,k]) => { const n = visits.filter(v => v.st && v.st[k]).length; const p = n/base*100; return `<div class="r"><span>${l}</span><div class="tr"><i style="width:0" data-w="${p.toFixed(1)}"></i></div><span class="pc num">${fmt(n)} · ${Math.round(p)}%</span></div>`; }).join('');
+  requestAnimationFrame(() => requestAnimationFrame(() => $$('#funnel i').forEach(i => i.style.width = Math.max(i.dataset.w > 0 ? 1.5 : 0, +i.dataset.w) + '%')));
+
+  // sources & cities
+  const list = (el, counts, empty) => { const arr = Object.entries(counts).sort((a,b) => b[1]-a[1]).slice(0,6); const m = Math.max(1, ...arr.map(a=>a[1])); el.innerHTML = arr.length ? arr.map(([k,n]) => `<div class="it"><span class="nm">${esc(k)}</span><div class="bar"><i style="width:${n/m*100}%"></i></div><b class="num">${fmt(n)}</b></div>`).join('') : `<div class="small" style="padding:10px 0">${empty}</div>`; };
+  const sc = {}; visits.forEach(v => { const k = srcName(v.src || 'direct'); sc[k] = (sc[k]||0) + 1; }); list($('#sources'), sc, 'حتى زيارة فهاد الفترة.');
+  const cc = {}; leads.forEach(l => { const k = (l.city || '').trim() || 'ما كتبهاش'; cc[k] = (cc[k]||0) + 1; }); list($('#cities'), cc, 'حتى طلب فيه مدينة فهاد الفترة.');
+
+  // feed
+  const ev = [...visits.map(v => ({ts:v.ts, t:'v', v})), ...leads.map(l => ({ts:l.ts, t:'l', l}))].sort((a,b) => b.ts-a.ts).slice(0,14);
+  $('#feed').innerHTML = ev.length ? ev.map(e => e.t === 'l'
+    ? `<div class="e"><span class="ic" style="background:var(--warn-bg); color:var(--warn)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="m4 8 8 5 8-5"/></svg></span><div><b>طلب تجربة</b> من ${esc(e.l.office)}${e.l.city ? ' · ' + esc(e.l.city) : ''}</div><span class="tm">${ago(e.ts)}</span></div>`
+    : `<div class="e"><span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">${e.v.dev === 'mob' ? '<rect x="7" y="2" width="10" height="20" rx="2"/>' : '<rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8"/>'}</svg></span><div>زائر من ${devName[e.v.dev] || 'جهاز'} · ${esc(srcName(e.v.src||'direct'))}${e.v.st && e.v.st.price ? ' · شاف الثمن' : ''}</div><span class="tm">${ago(e.ts)}</span></div>`).join('')
+    : `<div class="empty"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>غادي تبان هنا كل زيارة جديدة مباشرة ملي يدخل شي واحد للصفحة.</div>`;
+
+  // leads table
+  $('#leadCount').textContent = leads.length ? fmt(leads.length) + ' طلب' : '';
+  $('#leadsBox').innerHTML = leads.length ? `<table class="t leads"><thead><tr><th>الوقت</th><th>المكتب</th><th>المدينة</th><th>الملفات</th><th>الهاتف</th><th>الجهاز</th><th>المصدر</th><th>الحالة</th></tr></thead><tbody>${leads.map(l => `<tr>
+      <td class="small">${new Date(l.ts).toLocaleDateString('fr-MA')} · ${new Date(l.ts).toLocaleTimeString('fr-MA',{hour:'2-digit',minute:'2-digit'})}</td>
+      <td style="font-weight:600">${esc(l.office)}</td><td>${esc(l.city || '—')}</td><td class="num">${l.files ?? '—'}</td>
+      <td class="num" style="direction:ltr; text-align:right">${esc(l.tel)}</td><td>${devName[l.dev] || '—'}</td><td>${esc(srcName(l.src || 'direct'))}</td>
+      <td><span class="pill ${stCls[l.status||'new']}">${stName[l.status||'new']}</span>
+        <div style="margin-top:4px"><select data-lead="${esc(l.id)}" aria-label="بدل الحالة ديال ${esc(l.office)}" ${view.demo ? 'disabled' : ''}>${Object.keys(stName).map(k => `<option value="${k}" ${k === (l.status||'new') ? 'selected' : ''}>${stName[k]}</option>`).join('')}</select></div></td></tr>`).join('')}</tbody></table>`
+    : `<div class="empty"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="m4 7 8 6 8-6"/></svg>حتى طلب تجربة دابا. ملي يعمر شي مكتب الاستمارة فآخر الصفحة، غادي يبان هنا مباشرة.<br><button type="button" class="btn btn-ghost" style="margin-top:14px; min-height:40px; font-size:15px" onclick="document.getElementById('srcDemo').click()">شوف اللوحة بمثال توضيحي</button></div>`;
+}
+
+$('#leadsBox').addEventListener('change', async e => {
+  const s = e.target.closest('select[data-lead]'); if (!s || view.demo || !view.key) return;
+  const l = view.leads.find(x => x.id === s.dataset.lead); if (l) l.status = s.value; render();
+  try { await post({type:'status', key: view.key, id: s.dataset.lead, status: s.value}); toast('تبدلات الحالة: ' + stName[s.value]); setTimeout(load, 2500); } catch (x) { toast('ما تبدلاتش الحالة. عاود.'); }
+});
+function toast(t){ const d = document.createElement('div'); d.className = 'toast'; d.setAttribute('role','status'); d.textContent = t; document.body.appendChild(d); setTimeout(() => d.remove(), 2600); }
+
+$$('[data-range]').forEach(b => b.addEventListener('click', () => { view.range = +b.dataset.range; $$('[data-range]').forEach(x => x.setAttribute('aria-pressed', x === b)); render(); }));
+$('#srcReal').addEventListener('click', () => { view.demo = false; $('#srcReal').setAttribute('aria-pressed', true); $('#srcDemo').setAttribute('aria-pressed', false); render(); });
+$('#srcDemo').addEventListener('click', () => { view.demo = true; $('#srcDemo').setAttribute('aria-pressed', true); $('#srcReal').setAttribute('aria-pressed', false); render(); });
+
+/* ---------- loading from the Google Sheet ---------- */
+view.key = ls.get('rafiq_key');
+async function load(){
+  if (!view.key) return;
+  try {
+    const r = await fetch(API + '?key=' + encodeURIComponent(view.key)); const j = await r.json();
+    if (!j.ok) { $('#keyErr').textContent = 'المفتاح ما صحيحش. نسخو من ورقة «الإعدادات» فالشيت.'; view.key = null; $('#keyBox').hidden = false; $('#dashBody').hidden = true; return; }
+    const by = {};
+    (j.visits || []).forEach(v => { v.day = new Date(v.ts).toLocaleDateString('en-CA'); (by[v.uid] = by[v.uid] || {id: v.uid, visits: []}).visits.push(v); });
+    view.sessions = Object.values(by);
+    view.leads = (j.leads || []).map(l => Object.assign(l, {day: new Date(l.ts).toLocaleDateString('en-CA')}));
+    $('#keyBox').hidden = true; $('#dashBody').hidden = false; render();
+  } catch (_) { toast('ما قدرتش نقرا الشيت دابا. غادي نعاود.'); }
+}
+$('#keyForm').addEventListener('submit', e => { e.preventDefault(); const k = $('#keyIn').value.trim(); if (!k) return; view.key = k; ls.set('rafiq_key', k); $('#keyErr').textContent = ''; load(); });
+
+/* ---------- start ---------- */
+if (view.key) { $('#keyBox').hidden = true; $('#dashBody').hidden = false; load(); }
+else { $('#keyBox').hidden = false; $('#dashBody').hidden = true; }
+setInterval(() => { if (view.key) load(); }, 60000);
+})();
+</script>
+
+</body>
+</html>

@@ -420,6 +420,42 @@ details.q summary:hover{color:var(--primary)}
   .deep::before,.deep::after,.btn-main::after,.btn-amber::after,.eyebrow::after,.fact::before{animation:none; display:none}
 }
 
+
+/* brand + footer */
+.brand-logo{width:52px; height:52px; border-radius:50%; display:block; flex:0 0 52px; box-shadow:0 0 0 2px var(--surface), 0 6px 18px rgba(35,70,200,.35); animation:logoGlow 4s ease-in-out infinite; transition:transform .4s}
+.logo:hover .brand-logo{transform:rotate(-8deg) scale(1.06)}
+@keyframes logoGlow{0%,100%{box-shadow:0 0 0 2px var(--surface), 0 6px 18px rgba(35,70,200,.30)}50%{box-shadow:0 0 0 2px var(--surface), 0 6px 26px rgba(56,140,255,.6)}}
+footer.site{background:#0A1230; color:#DCE4FF; position:relative; overflow:hidden; margin-top:20px}
+footer.site::before{content:""; position:absolute; top:0; inset-inline:0; height:3px; background:linear-gradient(90deg, transparent, #3B8BFF, #E3A21A, #3B8BFF, transparent); background-size:200% 100%; animation:ftline 6s linear infinite}
+@keyframes ftline{from{background-position:0 0}to{background-position:200% 0}}
+footer.site::after{content:""; position:absolute; width:560px; height:560px; border-radius:50%; background:radial-gradient(circle, rgba(59,139,255,.22), transparent 70%); top:-260px; right:-180px; pointer-events:none; animation:orb 18s ease-in-out infinite alternate}
+.ft-grid{position:relative; z-index:1; display:grid; grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(0,1fr)) minmax(0,1.2fr); gap:36px; padding-block:64px 40px}
+@media (max-width:900px){.ft-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+@media (max-width:560px){.ft-grid{grid-template-columns:minmax(0,1fr)}}
+.ft-brand img{width:112px; height:112px; border-radius:50%; box-shadow:0 0 34px rgba(59,139,255,.45); animation:logoGlow2 5s ease-in-out infinite}
+@keyframes logoGlow2{0%,100%{box-shadow:0 0 24px rgba(59,139,255,.35)}50%{box-shadow:0 0 44px rgba(59,139,255,.7)}}
+.ft-brand .nm{font-family:var(--f-display); font-weight:800; font-size:22px; color:#FFFFFF; margin-top:14px}
+.ft-brand .tg{color:#8FB6FF; font-weight:600; margin-top:2px}
+.ft-brand p{color:#AEBBE0; font-size:15px; margin-top:10px; max-width:36ch}
+footer.site h3{font-family:var(--f-display); font-size:16px; color:#FFFFFF; margin-bottom:14px}
+.ft-links{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px}
+.ft-links a{color:#C9D4F5; text-decoration:none; position:relative; transition:color .2s, padding .25s}
+.ft-links a:hover{color:#FFFFFF; padding-inline-start:6px}
+.ft-links a::before{content:""; position:absolute; right:-12px; top:50%; width:5px; height:5px; border-radius:50%; background:#E3A21A; transform:translateY(-50%) scale(0); transition:transform .25s}
+.ft-links a:hover::before{transform:translateY(-50%) scale(1)}
+.ft-src li{color:#AEBBE0; font-size:14px}
+.ft-cta{background:rgba(255,255,255,.05); border:1px solid rgba(143,182,255,.22); border-radius:18px; padding:22px}
+.ft-cta p{color:#C9D4F5; font-size:15px; margin:6px 0 16px}
+.ft-cta .btn{width:100%}
+.ft-trust{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px}
+.ft-trust span{font-size:12px; color:#C9D4F5; border:1px solid rgba(143,182,255,.25); border-radius:99px; padding:3px 10px}
+.ft-bottom{position:relative; z-index:1; border-top:1px solid rgba(143,182,255,.16); display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; padding-block:20px; font-size:14px; color:#93A3CF}
+.to-top{display:inline-flex; align-items:center; gap:6px; color:#DCE4FF; text-decoration:none; border:1px solid rgba(143,182,255,.3); border-radius:99px; padding:6px 14px; transition:background .2s, transform .2s}
+.to-top:hover{background:rgba(255,255,255,.08); color:#FFFFFF; transform:translateY(-2px)}
+.to-top svg{animation:bob 2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@media (prefers-reduced-motion: reduce){.brand-logo,.ft-brand img,footer.site::before,footer.site::after,.to-top svg{animation:none}}
+
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important}
   .rv.wait,.stagger.wait > *{opacity:1; transform:none}
@@ -433,14 +469,13 @@ details.q summary:hover{color:var(--primary)}
 <header class="top" id="topbar">
   <div class="wrap">
     <a class="logo" href="#top" aria-label="رفيق المكتب، الصفحة الرئيسية">
-      <span class="mark"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F5F7FC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h10l6 6v10H4z"/><path d="M14 4v6h6"/><path d="m8.5 15 2 2 4-4"/></svg></span>
+      <img class="brand-logo" src="logo.webp" alt="شعار رفيق" width="52" height="52">
       <span>رفيق <b>المكتب</b></span>
     </a>
     <nav class="menu" aria-label="القائمة">
       <a href="#calendar">الآجال</a><a href="#how">كيفاش كيخدم</a><a href="#calc">احسب الوقت</a><a href="#security">السرية</a><a href="#pricing">الثمن</a>
     </nav>
     <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap">
-      <a href="#dashboard" class="dash-link" id="dashLink" hidden><span class="live-dot"></span>لوحة الزوار</a>
       <a href="#pilot" class="btn btn-main" style="min-height:44px; font-size:16px; padding:0 18px" data-cta="nav">طلب تجربة</a>
     </div>
   </div>
@@ -799,97 +834,47 @@ details.q summary:hover{color:var(--primary)}
   </section>
 </main>
 
-<!-- ========== DASHBOARD VIEW ========== -->
-<main id="dash" class="wrap" hidden>
-  <section class="card panel" id="keyBox" hidden style="max-width:520px; margin:40px auto">
-    <h1 style="font-size:24px; margin-bottom:8px">لوحة الزوار</h1>
-    <p class="small" style="font-size:15px; margin-bottom:16px">دخل المفتاح لي كاين فورقة «الإعدادات» فالشيت ديال رفيق. كيتحفظ فهاد المتصفح، وما غاديش يطلبو منك مرة أخرى.</p>
-    <form id="keyForm" style="display:flex; flex-direction:column; gap:10px">
-      <label for="keyIn" style="font-weight:600">المفتاح</label>
-      <input id="keyIn" class="field" type="password" autocomplete="off" style="direction:ltr">
-      <div class="small" id="keyErr" role="alert" style="color:var(--bad)"></div>
-      <button type="submit" class="btn btn-main">حل اللوحة</button>
-    </form>
-  </section>
-  <div id="dashBody">
-  <div class="d-head">
-    <div>
-      <h1>لوحة الزوار والطلبات</h1>
-      <div class="small" id="dSub"><span class="live-dot" style="display:inline-block; margin-inline-end:6px"></span>من Google Sheet، كتتحدث كل دقيقة</div>
+<footer class="site" aria-label="ذيل الصفحة">
+  <div class="wrap ft-grid">
+    <div class="ft-brand rv">
+      <img src="logo.webp" alt="شعار رفيق" width="112" height="112" loading="lazy">
+      <div class="nm">رفيق المكتب</div>
+      <div class="tg">أفكار أوضح .. إنجاز أسرع</div>
+      <p>السكرتير ديال مكتب المحاسبة على WhatsApp بالدارجة: كيجمع الوثائق، كيفكر بالآجال، وكيحول ليك الأسئلة الضريبية.</p>
     </div>
-    <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center">
-      <div class="seg" role="group" aria-label="الفترة">
-        <button type="button" data-range="7" aria-pressed="true">7 أيام</button>
-        <button type="button" data-range="30" aria-pressed="false">30 يوم</button>
-        <button type="button" data-range="0" aria-pressed="false">الكل</button>
-      </div>
-      <div class="seg" role="group" aria-label="مصدر المعطيات">
-        <button type="button" id="srcReal" aria-pressed="true">الزوار الحقيقيين</button>
-        <button type="button" id="srcDemo" aria-pressed="false">مثال توضيحي</button>
-      </div>
-      <a href="#top" class="btn btn-ghost" style="min-height:42px; font-size:15px">رجع للصفحة</a>
+    <nav class="rv" aria-label="روابط الصفحة">
+      <h3>الصفحة</h3>
+      <ul class="ft-links stagger">
+        <li><a href="#calendar">الآجال الضريبية</a></li>
+        <li><a href="#how">كيفاش كيخدم</a></li>
+        <li><a href="#calc">احسب الوقت</a></li>
+        <li><a href="#security">السرية</a></li>
+        <li><a href="#pricing">الثمن</a></li>
+        <li><a href="#faq">أسئلة</a></li>
+      </ul>
+    </nav>
+    <div class="rv">
+      <h3>مصادر الأرقام</h3>
+      <ul class="ft-links ft-src stagger">
+        <li>المديرية العامة للضرائب</li>
+        <li>Upsilon Consulting</li>
+        <li>Le360 و L'Economiste</li>
+        <li>Le Matin</li>
+        <li>TelQuel</li>
+      </ul>
+    </div>
+    <div class="ft-cta rv">
+      <h3>جرب رفيق فمكتبك</h3>
+      <p>كنقبلو 3 مكاتب فالتجربة الأولى: 30 يوم و20 زبون.</p>
+      <a href="#pilot" class="btn btn-amber" data-cta="footer">طلب تجربة 30 يوم</a>
+      <div class="ft-trust"><span>ما كيعطيش نصائح ضريبية</span><span>رقم المكتب ملكك</span><span>القانون 09-08</span></div>
     </div>
   </div>
-
-  <div class="demo-flag" id="demoFlag" hidden>
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg>
-    هادي أرقام مثال باش تشوف شكل اللوحة، ماشي زوار حقيقيين.
+  <div class="wrap ft-bottom">
+    <div>© 2026 رفيق المكتب. جميع الحقوق محفوظة.</div>
+    <a href="#top" class="to-top"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>رجع للفوق</a>
   </div>
-
-  <div class="d-kpis" id="kpis"></div>
-
-  <div class="d-grid">
-    <section class="card panel">
-      <h2>الزيارات والطلبات كل نهار</h2>
-      <div class="hint">الخط الأزرق: الزيارات · الخط الأصفر: طلبات التجربة</div>
-      <div class="chart-box" id="lineChart"></div>
-    </section>
-    <section class="card panel">
-      <h2>الأجهزة</h2>
-      <div class="hint">من شنو دخلو الزوار</div>
-      <div class="donut-wrap" id="donut"></div>
-    </section>
-  </div>
-
-  <div class="d-grid">
-    <section class="card panel">
-      <h2>مسار الزائر فالصفحة</h2>
-      <div class="hint">شحال وصلو لكل مرحلة، من الدخول حتى الطلب</div>
-      <div class="fun" id="funnel"></div>
-    </section>
-    <section class="card panel">
-      <h2>آخر الحركات</h2>
-      <div class="hint">زيارات وطلبات، مباشرة</div>
-      <div class="feed" id="feed"></div>
-    </section>
-  </div>
-
-  <div class="d-grid" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr)">
-    <section class="card panel">
-      <h2>منين جاو</h2>
-      <div class="hint">حسب الرابط لي دخلو منو</div>
-      <div class="list" id="sources"></div>
-    </section>
-    <section class="card panel">
-      <h2>المدن لي كتبو فالطلبات</h2>
-      <div class="hint">من خانة «المدينة» فالاستمارة</div>
-      <div class="list" id="cities"></div>
-    </section>
-  </div>
-
-  <section class="card panel" style="margin-bottom:18px">
-    <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; align-items:baseline">
-      <div><h2>طلبات التجربة</h2><div class="hint">بدل الحالة ملي تتاصل بالمكتب</div></div>
-      <div class="small num" id="leadCount"></div>
-    </div>
-    <div class="tbl-wrap" id="leadsBox"></div>
-  </section>
-
-  <div class="tip">
-    باش تعرف المصدر ديال كل زائر، زيد كلمة فآخر الرابط لي كتنشر: <code>#from-facebook</code> ولا <code>#from-tiktok</code> ولا <code>#from-whatsapp</code>. المعطيات كاملة كتتسجل فالشيت ديال رفيق، والزيارات من هاد المتصفح ما كتتحسبش.
-  </div>
-  </div>
-</main>
+</footer>
 
 <script>
 (() => {
@@ -1079,158 +1064,7 @@ $('#leadForm').addEventListener('submit', async e => {
   }
 });
 
-/* ========== DASHBOARD ========== */
-const view = { range: 7, demo: false, sessions: [], leads: [], editor: false };
-const devName = {mob: 'الهاتف', desk: 'الحاسوب', tab: 'اللوحة'};
-const devCol = {mob: 'var(--primary)', desk: 'var(--accent)', tab: 'var(--good)'};
-const srcName = s => ({direct: 'مباشر', facebook: 'Facebook', fb: 'Facebook', instagram: 'Instagram', ig: 'Instagram', linkedin: 'LinkedIn', whatsapp: 'WhatsApp', wa: 'WhatsApp', google: 'Google', email: 'الإيميل', tiktok: 'TikTok'}[s] || s);
-const stName = {new: 'جديد', call: 'تاصلنا', trial: 'فالتجربة', no: 'ما مهتمش'};
-const stCls = {new: 'p-new', call: 'p-call', trial: 'p-trial', no: 'p-no'};
-const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const dayKey = d => d.toLocaleDateString('en-CA');
-const ago = ts => { const m = Math.round((Date.now() - ts) / 60000); if (m < 1) return 'دابا'; if (m < 60) return 'قبل ' + m + ' دقيقة'; const h = Math.round(m/60); if (h < 24) return 'قبل ' + h + ' ساعة'; return 'قبل ' + Math.round(h/24) + ' يوم'; };
-
-function demoData(){
-  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-  const sessions = [], leads = []; const now = Date.now(); const srcs = ['direct','facebook','linkedin','whatsapp','google']; const cities = ['الدار البيضاء','الرباط','فاس','طنجة','مراكش','أكادير'];
-  const offices = ['مكتب النور للمحاسبة','فيدوسيار الأطلس','مكتب الخبرة','فيدوسيار المدينة','مكتب الأمانة','مكتب السلام','فيدوسيار الشمال','مكتب الريادة'];
-  for (let d = 29; d >= 0; d--) {
-    const n = Math.round(14 + rnd()*22 + (29-d)*0.6);
-    for (let i = 0; i < n; i++) {
-      const ts = now - d*864e5 - rnd()*864e5*0.9; const r = rnd();
-      const st = {v:1}; if (r < .62) st.s50 = 1; if (r < .41) st.price = 1; if (r < .14) st.form = 1; if (r < .06) st.sub = 1;
-      const dev = rnd() < .64 ? 'mob' : (rnd() < .85 ? 'desk' : 'tab'); const src = srcs[Math.floor(Math.pow(rnd(),1.6)*srcs.length)];
-      sessions.push({id:'d'+d+'_'+i, visits:[{ts, day: dayKey(new Date(ts)), dev, src, st}]});
-      if (st.sub) leads.push({id:'L'+d+'_'+i, ts, day: dayKey(new Date(ts)), office: offices[Math.floor(rnd()*offices.length)], city: cities[Math.floor(Math.pow(rnd(),1.3)*cities.length)], files: 40 + Math.round(rnd()*240), tel: '06•• •• •• ' + String(10+Math.floor(rnd()*89)), dev, src, status: d > 6 ? (rnd()<.5?'trial':(rnd()<.6?'call':'no')) : (d > 2 ? 'call' : 'new')});
-    }
-  }
-  return {sessions, leads};
-}
-
-function currentData(){
-  const base = view.demo ? demoData() : {sessions: view.sessions, leads: view.leads};
-  const since = view.range ? Date.now() - view.range*864e5 : 0;
-  const visits = []; base.sessions.forEach(s => (s.visits || []).forEach(v => { if (v && v.ts >= since) visits.push(v); }));
-  const leads = base.leads.filter(l => l.ts >= since).sort((a,b) => b.ts - a.ts);
-  return {visits, leads, visitors: base.sessions.filter(s => (s.visits||[]).some(v => v.ts >= since)).length};
-}
-
-function spark(vals, col){
-  if (vals.length < 2) return ''; const mx = Math.max(1, ...vals); const w = 90, h = 34;
-  const pts = vals.map((v,i) => [(i/(vals.length-1))*w, h - 3 - v/mx*(h-6)]);
-  const d = pts.map((p,i) => (i?'L':'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
-  return `<svg class="spark" viewBox="0 0 ${w} ${h}" aria-hidden="true"><path d="${d} L${w} ${h} L0 ${h}Z" fill="${col}" opacity=".12"/><path d="${d}" fill="none" stroke="${col}" stroke-width="2" stroke-linecap="round"/></svg>`;
-}
-
-function render(){
-  if ($('#dash').hidden) return;
-  $('#demoFlag').hidden = !view.demo;
-  const {visits, leads, visitors} = currentData();
-  const days = view.range || Math.max(7, Math.min(60, Math.ceil((Date.now() - Math.min(Date.now(), ...visits.map(v=>v.ts), ...leads.map(l=>l.ts))) / 864e5) + 1));
-  const keys = []; for (let i = days - 1; i >= 0; i--) keys.push(dayKey(new Date(Date.now() - i*864e5)));
-  const vBy = Object.fromEntries(keys.map(k => [k, 0])), lBy = Object.fromEntries(keys.map(k => [k, 0]));
-  visits.forEach(v => { if (v.day in vBy) vBy[v.day]++; }); leads.forEach(l => { if (l.day in lBy) lBy[l.day]++; });
-  const vs = keys.map(k => vBy[k]), ls = keys.map(k => lBy[k]);
-  const subs = visits.filter(v => v.st && v.st.sub).length;
-  const conv = visits.length ? (leads.length / visits.length * 100) : 0;
-  const deep = visits.length ? visits.filter(v => v.st && v.st.s50).length / visits.length * 100 : 0;
-
-  // KPIs
-  const icon = (p, bg, c) => `<i style="background:${bg}; color:${c}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">${p}</svg></i>`;
-  $('#kpis').innerHTML = [
-    ['الزيارات', fmt(visits.length), `${fmt(visitors)} زائر مختلف`, icon('<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>','var(--panel2)','var(--primary)'), spark(vs,'var(--primary)')],
-    ['طلبات التجربة', fmt(leads.length), leads.filter(l => (l.status||'new') === 'new').length + ' جديدة ما تاصلناش بيها', icon('<path d="M4 4h16v16H4z"/><path d="m4 7 8 6 8-6"/>','var(--warn-bg)','var(--warn)'), spark(ls,'var(--accent)')],
-    ['معدل التحويل', conv.toFixed(1).replace('.', ',') + '%', 'طلب لكل 100 زيارة', icon('<path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/>','var(--good-bg)','var(--good)'), ''],
-    ['قراو نص الصفحة', Math.round(deep) + '%', 'من الزوار نزلو حتى النص', icon('<path d="M12 5v14M5 12l7 7 7-7"/>','var(--panel)','var(--ink)'), '']
-  ].map(([l,v,s,ic,sp]) => `<div class="card kpi"><div class="l">${ic}${l}</div><div class="v num">${v}</div><div class="sub">${s}</div>${sp}</div>`).join('');
-
-  // line chart
-  const W = 640, H = 240, pl = 34, pr = 24, pt = 14, pb = 28; const mx = Math.max(4, ...vs, ...ls); const nice = Math.ceil(mx / 4) * 4;
-  const x = i => pl + (keys.length === 1 ? 0 : i/(keys.length-1)) * (W - pl - pr), y = v => pt + (1 - v/nice) * (H - pt - pb);
-  const path = arr => arr.map((v,i) => (i?'L':'M') + x(i).toFixed(1) + ' ' + y(v).toFixed(1)).join(' ');
-  let g = ''; for (let t = 0; t <= 4; t++) { const v = nice*t/4; g += `<line class="grid-l" x1="${pl}" x2="${W-pr}" y1="${y(v)}" y2="${y(v)}"/><text class="ax" x="${pl-6}" y="${y(v)+4}" text-anchor="end">${v}</text>`; }
-  const every = Math.ceil(keys.length / 7); keys.forEach((k,i) => { if (i % every === 0 || i === keys.length-1) g += `<text class="ax" x="${x(i)}" y="${H-8}" text-anchor="middle">${k.slice(8)}/${k.slice(5,7)}</text>`; });
-  const lastI = keys.length - 1;
-  $('#lineChart').innerHTML = `<svg viewBox="0 0 ${W} ${H}" dir="ltr" role="img" aria-label="رسم الزيارات والطلبات اليومية">${g}
-    <path d="${path(vs)} L${x(lastI)} ${y(0)} L${x(0)} ${y(0)}Z" fill="var(--primary)" opacity=".1"/>
-    <path class="ln-anim" d="${path(vs)}" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-    <path class="ln-anim" d="${path(ls)}" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-    <circle cx="${x(lastI)}" cy="${y(vs[lastI])}" r="4.5" fill="var(--primary)" stroke="var(--surface)" stroke-width="2"/>
-    <circle cx="${x(lastI)}" cy="${y(ls[lastI])}" r="4.5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2"/></svg>`;
-  if (!reduce) $$('#lineChart .ln-anim').forEach(p => { const len = p.getTotalLength(); p.style.strokeDasharray = len; p.style.strokeDashoffset = len; p.getBoundingClientRect(); p.style.transition = 'stroke-dashoffset 1.2s cubic-bezier(.2,.8,.2,1)'; p.style.strokeDashoffset = 0; });
-
-  // donut
-  const dc = {mob:0, desk:0, tab:0}; visits.forEach(v => { if (v.dev in dc) dc[v.dev]++; }); const tot = visits.length || 1;
-  let acc = 0; const R = 60, C = 2*Math.PI*R; let arcs = '';
-  Object.keys(dc).forEach(k => { const f = dc[k]/tot; if (f > 0) arcs += `<circle cx="80" cy="80" r="${R}" fill="none" stroke="${devCol[k]}" stroke-width="22" stroke-dasharray="${(f*C).toFixed(1)} ${C.toFixed(1)}" stroke-dashoffset="${(-acc*C).toFixed(1)}" transform="rotate(-90 80 80)"/>`; acc += f; });
-  $('#donut').innerHTML = `<svg viewBox="0 0 160 160" role="img" aria-label="توزيع الأجهزة"><circle cx="80" cy="80" r="${R}" fill="none" stroke="var(--line2)" stroke-width="22"/>${arcs}<text x="80" y="78" text-anchor="middle" style="font:800 24px var(--f-display); fill:var(--ink)">${fmt(visits.length)}</text><text x="80" y="98" text-anchor="middle" class="ax">زيارة</text></svg>
-    <div class="lg">${Object.keys(dc).map(k => `<div><i style="background:${devCol[k]}"></i>${devName[k]}<b class="num">${Math.round(dc[k]/tot*100)}%</b></div>`).join('')}</div>`;
-
-  // funnel
-  const F = [['دخلو للصفحة','v'],['نزلو حتى النص','s50'],['وصلو للثمن','price'],['بداو يعمرو الاستمارة','form'],['صيفطو الطلب','sub']];
-  const base = visits.length || 1;
-  $('#funnel').innerHTML = F.map(([l,k]) => { const n = visits.filter(v => v.st && v.st[k]).length; const p = n/base*100; return `<div class="r"><span>${l}</span><div class="tr"><i style="width:0" data-w="${p.toFixed(1)}"></i></div><span class="pc num">${fmt(n)} · ${Math.round(p)}%</span></div>`; }).join('');
-  requestAnimationFrame(() => requestAnimationFrame(() => $$('#funnel i').forEach(i => i.style.width = Math.max(i.dataset.w > 0 ? 1.5 : 0, +i.dataset.w) + '%')));
-
-  // sources & cities
-  const list = (el, counts, empty) => { const arr = Object.entries(counts).sort((a,b) => b[1]-a[1]).slice(0,6); const m = Math.max(1, ...arr.map(a=>a[1])); el.innerHTML = arr.length ? arr.map(([k,n]) => `<div class="it"><span class="nm">${esc(k)}</span><div class="bar"><i style="width:${n/m*100}%"></i></div><b class="num">${fmt(n)}</b></div>`).join('') : `<div class="small" style="padding:10px 0">${empty}</div>`; };
-  const sc = {}; visits.forEach(v => { const k = srcName(v.src || 'direct'); sc[k] = (sc[k]||0) + 1; }); list($('#sources'), sc, 'حتى زيارة فهاد الفترة.');
-  const cc = {}; leads.forEach(l => { const k = (l.city || '').trim() || 'ما كتبهاش'; cc[k] = (cc[k]||0) + 1; }); list($('#cities'), cc, 'حتى طلب فيه مدينة فهاد الفترة.');
-
-  // feed
-  const ev = [...visits.map(v => ({ts:v.ts, t:'v', v})), ...leads.map(l => ({ts:l.ts, t:'l', l}))].sort((a,b) => b.ts-a.ts).slice(0,14);
-  $('#feed').innerHTML = ev.length ? ev.map(e => e.t === 'l'
-    ? `<div class="e"><span class="ic" style="background:var(--warn-bg); color:var(--warn)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="m4 8 8 5 8-5"/></svg></span><div><b>طلب تجربة</b> من ${esc(e.l.office)}${e.l.city ? ' · ' + esc(e.l.city) : ''}</div><span class="tm">${ago(e.ts)}</span></div>`
-    : `<div class="e"><span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">${e.v.dev === 'mob' ? '<rect x="7" y="2" width="10" height="20" rx="2"/>' : '<rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8"/>'}</svg></span><div>زائر من ${devName[e.v.dev] || 'جهاز'} · ${esc(srcName(e.v.src||'direct'))}${e.v.st && e.v.st.price ? ' · شاف الثمن' : ''}</div><span class="tm">${ago(e.ts)}</span></div>`).join('')
-    : `<div class="empty"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>غادي تبان هنا كل زيارة جديدة مباشرة ملي يدخل شي واحد للصفحة.</div>`;
-
-  // leads table
-  $('#leadCount').textContent = leads.length ? fmt(leads.length) + ' طلب' : '';
-  $('#leadsBox').innerHTML = leads.length ? `<table class="t leads"><thead><tr><th>الوقت</th><th>المكتب</th><th>المدينة</th><th>الملفات</th><th>الهاتف</th><th>الجهاز</th><th>المصدر</th><th>الحالة</th></tr></thead><tbody>${leads.map(l => `<tr>
-      <td class="small">${new Date(l.ts).toLocaleDateString('fr-MA')} · ${new Date(l.ts).toLocaleTimeString('fr-MA',{hour:'2-digit',minute:'2-digit'})}</td>
-      <td style="font-weight:600">${esc(l.office)}</td><td>${esc(l.city || '—')}</td><td class="num">${l.files ?? '—'}</td>
-      <td class="num" style="direction:ltr; text-align:right">${esc(l.tel)}</td><td>${devName[l.dev] || '—'}</td><td>${esc(srcName(l.src || 'direct'))}</td>
-      <td><span class="pill ${stCls[l.status||'new']}">${stName[l.status||'new']}</span>
-        <div style="margin-top:4px"><select data-lead="${esc(l.id)}" aria-label="بدل الحالة ديال ${esc(l.office)}" ${view.demo ? 'disabled' : ''}>${Object.keys(stName).map(k => `<option value="${k}" ${k === (l.status||'new') ? 'selected' : ''}>${stName[k]}</option>`).join('')}</select></div></td></tr>`).join('')}</tbody></table>`
-    : `<div class="empty"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="m4 7 8 6 8-6"/></svg>حتى طلب تجربة دابا. ملي يعمر شي مكتب الاستمارة فآخر الصفحة، غادي يبان هنا مباشرة.<br><button type="button" class="btn btn-ghost" style="margin-top:14px; min-height:40px; font-size:15px" onclick="document.getElementById('srcDemo').click()">شوف اللوحة بمثال توضيحي</button></div>`;
-}
-
-$('#leadsBox').addEventListener('change', async e => {
-  const s = e.target.closest('select[data-lead]'); if (!s || view.demo || !view.key) return;
-  const l = view.leads.find(x => x.id === s.dataset.lead); if (l) l.status = s.value; render();
-  try { await post({type:'status', key: view.key, id: s.dataset.lead, status: s.value}); toast('تبدلات الحالة: ' + stName[s.value]); setTimeout(load, 2500); } catch (x) { toast('ما تبدلاتش الحالة. عاود.'); }
-});
-function toast(t){ const d = document.createElement('div'); d.className = 'toast'; d.setAttribute('role','status'); d.textContent = t; document.body.appendChild(d); setTimeout(() => d.remove(), 2600); }
-
-$$('[data-range]').forEach(b => b.addEventListener('click', () => { view.range = +b.dataset.range; $$('[data-range]').forEach(x => x.setAttribute('aria-pressed', x === b)); render(); }));
-$('#srcReal').addEventListener('click', () => { view.demo = false; $('#srcReal').setAttribute('aria-pressed', true); $('#srcDemo').setAttribute('aria-pressed', false); render(); });
-$('#srcDemo').addEventListener('click', () => { view.demo = true; $('#srcDemo').setAttribute('aria-pressed', true); $('#srcReal').setAttribute('aria-pressed', false); render(); });
-
-/* ---------- loading from the Google Sheet ---------- */
-view.key = ls.get('rafiq_key');
-async function load(){
-  if (!view.key) return;
-  try {
-    const r = await fetch(API + '?key=' + encodeURIComponent(view.key)); const j = await r.json();
-    if (!j.ok) { $('#keyErr').textContent = 'المفتاح ما صحيحش. نسخو من ورقة «الإعدادات» فالشيت.'; view.key = null; $('#keyBox').hidden = false; $('#dashBody').hidden = true; return; }
-    const by = {};
-    (j.visits || []).forEach(v => { v.day = new Date(v.ts).toLocaleDateString('en-CA'); (by[v.uid] = by[v.uid] || {id: v.uid, visits: []}).visits.push(v); });
-    view.sessions = Object.values(by);
-    view.leads = (j.leads || []).map(l => Object.assign(l, {day: new Date(l.ts).toLocaleDateString('en-CA')}));
-    $('#keyBox').hidden = true; $('#dashBody').hidden = false; render();
-  } catch (_) { toast('ما قدرتش نقرا الشيت دابا. غادي نعاود.'); }
-}
-$('#keyForm').addEventListener('submit', e => { e.preventDefault(); const k = $('#keyIn').value.trim(); if (!k) return; view.key = k; ls.set('rafiq_key', k); $('#keyErr').textContent = ''; load(); });
-
-/* ---------- routing ---------- */
-function route(){
-  const wantDash = location.hash === '#dashboard';
-  $('#dash').hidden = !wantDash; $('#landing').hidden = wantDash;
-  if (wantDash) { scrollTo(0,0); if (view.key) { $('#keyBox').hidden = true; $('#dashBody').hidden = false; load(); } else { $('#keyBox').hidden = false; $('#dashBody').hidden = true; } }
-}
-addEventListener('hashchange', route);
-setInterval(() => { if (!$('#dash').hidden) load(); }, 60000);
-route();
+if (location.hash === '#dashboard') location.replace('dashboard.html');
 track.start();
 })();
 </script>
