@@ -555,6 +555,40 @@ nav.pill-nav a.on{font-weight:700}
 .ft-social a{width:36px; height:36px; border-radius:11px; display:grid; place-items:center; color:#DCE4FF; background:rgba(255,255,255,.06); border:1px solid rgba(143,182,255,.2); text-decoration:none; transition:background .25s, transform .25s}
 .ft-social a:hover{background:var(--brand); color:#fff; transform:translateY(-3px)}
 .ft-social a.soon{opacity:.5}
+
+/* ===== Rafiq chat (talks to every visitor) ===== */
+.rc{position:fixed; z-index:57; right:max(16px, env(safe-area-inset-right,0px)); bottom:calc(16px + env(safe-area-inset-bottom,0px)); font-family:var(--f-body); direction:rtl}
+.rc-fab{position:relative; width:60px; height:60px; border-radius:50%; border:0; padding:0; cursor:pointer; background:transparent; box-shadow:0 12px 30px rgba(10,18,48,.45); transition:transform .3s}
+.rc-fab:hover{transform:scale(1.06)}
+.rc-fab img{width:60px; height:60px; border-radius:50%; display:block}
+.rc-fab .dot{position:absolute; top:2px; right:2px; width:14px; height:14px; border-radius:50%; background:#2FD07E; border:2px solid #0A1230; animation:ping 1.8s infinite}
+.rc-teaser{position:absolute; bottom:72px; right:0; width:min(280px, calc(100vw - 32px)); background:var(--surface); color:var(--ink); border:1px solid var(--line); border-radius:16px 16px 4px 16px; padding:12px 14px; box-shadow:0 16px 36px var(--shadow); font-size:14px; cursor:pointer; animation:wordIn .45s both}
+.rc-teaser b{display:block; font-family:var(--f-display); margin-bottom:2px}
+.rc-teaser .x{position:absolute; top:4px; left:8px; border:0; background:transparent; color:var(--soft); cursor:pointer; font-size:16px; padding:4px}
+.rc-box{position:absolute; bottom:74px; right:0; width:min(370px, calc(100vw - 32px)); height:min(560px, calc(100vh - 120px)); display:flex; flex-direction:column; border-radius:22px; overflow:hidden; background:var(--bg); border:1px solid var(--line); box-shadow:0 28px 60px rgba(10,18,48,.35); transform-origin:bottom right; animation:rcIn .35s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rcIn{from{opacity:0; transform:translateY(12px) scale(.96)}to{opacity:1; transform:none}}
+.rc-head{display:flex; align-items:center; gap:10px; padding:12px 14px; color:#fff; background:radial-gradient(120% 120% at 100% 0%, rgba(59,139,255,.5), transparent 60%), linear-gradient(160deg, #1A3A9E, #0A1230)}
+.rc-head img{width:40px; height:40px; border-radius:50%}
+.rc-head b{display:block; font-family:var(--f-display); font-size:16px}
+.rc-head small{color:#AFC4F5; font-size:12px; display:flex; align-items:center; gap:6px}
+.rc-head small i{width:7px; height:7px; border-radius:50%; background:#2FD07E; display:inline-block}
+.rc-close{margin-inline-start:auto; border:0; background:rgba(255,255,255,.12); color:#fff; width:32px; height:32px; border-radius:10px; cursor:pointer; font-size:18px}
+.rc-log{flex:1; overflow-y:auto; padding:14px; display:flex; flex-direction:column; gap:8px}
+.rc-m{max-width:86%; padding:9px 12px; border-radius:14px; font-size:14px; line-height:1.7; animation:wordIn .35s both; white-space:pre-line}
+.rc-m.bot{align-self:flex-start; background:var(--surface); border:1px solid var(--line); color:var(--ink); border-radius:14px 14px 14px 4px}
+.rc-m.me{align-self:flex-end; background:var(--primary); color:var(--on-primary); border-radius:14px 14px 4px 14px}
+.rc-typing{align-self:flex-start; display:inline-flex; gap:4px; padding:12px 14px; background:var(--surface); border:1px solid var(--line); border-radius:14px}
+.rc-typing i{width:6px; height:6px; border-radius:50%; background:var(--soft); animation:blink 1s infinite}
+.rc-typing i:nth-child(2){animation-delay:.15s}.rc-typing i:nth-child(3){animation-delay:.3s}
+.rc-chips{display:flex; flex-wrap:wrap; gap:6px; padding:0 14px 10px}
+.rc-chips button{border:1px solid color-mix(in srgb, var(--primary) 35%, var(--line)); background:var(--surface); color:var(--primary); border-radius:99px; padding:6px 12px; font-family:inherit; font-size:13px; font-weight:600; cursor:pointer; transition:background .2s, color .2s}
+.rc-chips button:hover{background:var(--primary); color:var(--on-primary)}
+.rc-form{display:flex; gap:8px; padding:10px 12px; border-top:1px solid var(--line); background:var(--surface)}
+.rc-form input{flex:1; min-width:0; min-height:42px; border-radius:12px; border:1px solid var(--line); background:var(--bg); color:var(--ink); padding:0 12px; font-family:inherit; font-size:15px}
+.rc-form button{min-width:42px; min-height:42px; border:0; border-radius:12px; background:var(--primary); color:var(--on-primary); cursor:pointer; font-size:18px}
+.rc-note{font-size:11px; color:var(--soft); padding:0 14px 8px}
+@media (max-width:560px){.rc-box{height:min(560px, calc(100vh - 110px))}}
+@media (prefers-reduced-motion: reduce){.rc-box,.rc-m,.rc-teaser{animation:none}.rc-fab .dot{animation:none}}
 @media (prefers-reduced-motion: reduce){.sd-panel,.sd-item,.pill-ind,.sd-toggle{transition:none}.sd-fab{animation:none}}
 @media (prefers-reduced-motion: reduce){.brand-logo,.ft-brand img,footer.site::before,footer.site::after,.to-top svg{animation:none}}
 
@@ -979,6 +1013,18 @@ nav.pill-nav a.on{font-weight:700}
   </div>
 </footer>
 
+<div class="rc" id="rc">
+  <div class="rc-teaser" id="rcTeaser" hidden role="button" tabindex="0"><button type="button" class="x" id="rcTeaserX" aria-label="سد">×</button><b>أنا رفيق</b><span id="rcTeaserText">عندك سؤال على كيفاش نخدم مع المكتب ديالك؟ سولني هنا.</span></div>
+  <div class="rc-box" id="rcBox" hidden role="dialog" aria-label="محادثة مع رفيق">
+    <div class="rc-head"><img src="logo.webp" alt="" width="40" height="40"><div><b>رفيق</b><small><i></i>كيجاوب دابا</small></div><button type="button" class="rc-close" id="rcClose" aria-label="سد المحادثة">×</button></div>
+    <div class="rc-log" id="rcLog" aria-live="polite"></div>
+    <div class="rc-chips" id="rcChips"></div>
+    <div class="rc-note" id="rcNote" hidden>الرقم كيتستعمل غير باش نتاصلو بيك على التجربة.</div>
+    <form class="rc-form" id="rcForm" autocomplete="off"><label for="rcIn" hidden>كتب رسالتك</label><input id="rcIn" type="text" placeholder="كتب سؤالك هنا…" maxlength="300"><button type="submit" aria-label="صيفط">‹</button></form>
+  </div>
+  <button type="button" class="rc-fab" id="rcFab" aria-expanded="false" aria-controls="rcBox" aria-label="هضر مع رفيق"><img src="logo.webp" alt="" width="60" height="60"><span class="dot"></span></button>
+</div>
+
 <aside class="social-dock" id="socialDock" aria-label="حسابات رفيق فمواقع التواصل">
   <button type="button" class="sd-fab" id="sdFab" aria-expanded="false" aria-controls="sdPanel" aria-label="حسابات رفيق"><img src="logo.webp" alt="" width="56" height="56"></button>
   <div class="sd-rail" id="sdRail">
@@ -1042,6 +1088,78 @@ $('#bars').innerHTML = [6,4,2].map(v => `<div class="gl" style="bottom:${(v/6*19
   return `<div class="col"><b class="num">${n}</b><i style="height:${Math.round(n/6*190)}px; background:${c}; transition-delay:${i*60}ms"></i></div>`;
 }).join('');
 $('#mlabels').innerHTML = L.map(l => `<span>${l}</span>`).join('');
+
+/* ---------- Rafiq chat: answers from this page only, and offers a call-back ---------- */
+(function rafiqChat(){
+  const box = $('#rcBox'), log = $('#rcLog'), chips = $('#rcChips'), form = $('#rcForm'), inp = $('#rcIn'), fab = $('#rcFab'), teaser = $('#rcTeaser'), note = $('#rcNote');
+  const ss = { get(k){ try { return sessionStorage.getItem(k); } catch (_) { return null; } }, set(k,v){ try { sessionStorage.setItem(k,v); } catch (_) {} } };
+  const A = {
+    what: 'رفيق هو السكرتير ديال المكتب على WhatsApp بالدارجة.\nكيطلب من كل زبون الوثائق ديال الشهر حسب النوع ديالو، كيستقبل الصور والـPDF والرسائل الصوتية، كيرتبها فملف «الزبون / الشهر»، كيفكر الناقصين قبل الأجل، وكيحول ليك أي سؤال ضريبي.',
+    price: 'أثمنة مرحلة التجربة، خارج الضريبة:\n• التجربة: 0 درهم، 30 يوم، 20 زبون.\n• مكتب صغير: 490 درهم فالشهر، حتى 80 زبون.\n• مكتب متوسط: 990 درهم فالشهر، حتى 250 زبون.\nرسوم رسائل Meta كتتحدد قبل الإطلاق.',
+    secure: 'السرية المهنية هي الأساس ديال التصميم:\n• حتى مكتب ما كيشوف حاجة ديال مكتب آخر، وحتى زبون ما كيشوف ملف زبون آخر.\n• المكتب هو المسؤول عن المعطيات، ورفيق كيعالجها باسمو حسب القانون 09-08.\n• النموذج كيشوف غير النص، ماشي الوثائق.\n• سجل غير قابل للتعديل: شكون صيفط شنو ومتى.',
+    tax: 'لا. رفيق ما كيعطيش نصائح ضريبية، وما عندوش الأداة باش يعطي رقم ضريبي ولا تفسير قانوني.\nأي سؤال على الضريبة ولا الفلوس كيتحول للمحاسب مع ملخص ورسالة صوتية إلا كانت.',
+    software: 'لا، ما خاصكش تبدل البرنامج ديالك. رفيق كيرتب الوثائق، ونتا كتكمل بالبرنامج لي عندك. وتقدر تصدر الملفات للبرنامج ديالك فباقة مكتب صغير ومتوسط.',
+    clients: 'إيه، أول رسالة كتوصل للزبون فيها إشعار واضح بشكون كيعالج المعطيات، والزبون يقدر يوقف الرسائل ولا يطلب حذف معطياتو.',
+    deadlines: 'لكل نوع زبون جدول تذكير، مثلاً 10 أيام قبل الأجل، ومن بعد 5، ومن بعد 2.\nالتذكير كيمشي غير للي باقي ناقصهم شي حاجة، والتواريخ كيدخلها المكتب، رفيق ما كيحسبش الآجال من راسو.',
+    trial: 'كنقبلو 3 مكاتب فالتجربة الأولى، لمكاتب كتتابع بين 50 و300 ملف: 30 يوم، 20 زبون، والقياس على المكتب ديالك.\nبغيتي نسجلو المكتب ديالك؟ غير عطيني جوج معلومات.',
+    hosting: 'الوثائق مشفرة، وكتتحذف فأجل مكتوب فالعقد. مكان الاستضافة كيتحدد بعد الرأي القانوني قبل الإطلاق.',
+    menu: 'واخا. شنو بغيتي تعرف؟',
+    fallback: 'سؤال مزيان. باش ما نعطيكش جواب ناقص، نقدرو نتاصلو بيك ونجاوبوك بالتفصيل.\nبغيتي تخلي ليا الرقم ديالك؟'
+  };
+  const MAIN = [['شنو كيدير رفيق؟','what'],['شحال الثمن؟','price'],['واش الوثائق آمنة؟','secure'],['واش كيعطي نصائح ضريبية؟','tax'],['كيفاش نجرب؟','trial'],['بغيت تتاصلو بيا','lead']];
+  const RULES = [[/ثمن|شحال|بشحال|درهم|سعر|خلاص|باقة|price/i,'price'],[/آمن|امن|سرية|سري|معطيات|حماية|09-08|قانون/i,'secure'],[/ضريب|tva|فتوى|تصريح|ضرائب/i,'tax'],[/برنامج|sage|logiciel|تصدير|excel/i,'software'],[/زبناء|الزبون|إشعار|يعرفو/i,'clients'],[/أجل|اجل|آجال|تذكير|موعد/i,'deadlines'],[/تجرب|تجربة|نجرب|نبدا|سجل/i,'trial'],[/فين|استضافة|سيرفر|مشفر|تحذف/i,'hosting'],[/شنو|كيدير|كيخدم|كيفاش|whatsapp|واتساب/i,'what'],[/رقم|تاصل|تصل|عيط|هضر|اتصل|بغيت/i,'lead']];
+  let opened = false, stage = null, lead = {};
+  const add = (t, who) => { const d = document.createElement('div'); d.className = 'rc-m ' + who; d.textContent = t; log.appendChild(d); log.scrollTop = log.scrollHeight; };
+  const say = (t, after) => { const ty = document.createElement('div'); ty.className = 'rc-typing'; ty.innerHTML = '<i></i><i></i><i></i>'; log.appendChild(ty); log.scrollTop = log.scrollHeight;
+    setTimeout(() => { ty.remove(); add(t, 'bot'); after && after(); }, Math.min(1400, 450 + t.length * 6)); };
+  const setChips = list => { chips.innerHTML = ''; list.forEach(([label, key]) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = label; b.addEventListener('click', () => { add(label, 'me'); handle(key); }); chips.appendChild(b); }); };
+  const mainChips = () => setChips(MAIN.filter(c => c[1] !== stage));
+  function startLead(){ stage = 'office'; note.hidden = false; setChips([]); say('مرحبا. شنو سمية المكتب ديالك؟'); inp.placeholder = 'سمية المكتب'; inp.focus(); }
+  function handle(key){
+    track.mark('chat');
+    if (key === 'lead') return startLead();
+    say(A[key], () => key === 'trial' ? setChips([['إيه، سجلني','lead'],['عندي سؤال آخر','menu']]) : key === 'fallback' ? setChips([['إيه، خلي ليا رقمي','lead'],['لا، شكراً','menu']]) : mainChips());
+  }
+  async function leadStep(text){
+    if (stage === 'office') { lead.office = text.slice(0,120); stage = 'tel'; inp.placeholder = 'رقم الهاتف'; inp.type = 'tel'; return say('مزيان. شنو رقم الهاتف ولا WhatsApp باش نتاصلو بيك؟'); }
+    if (stage === 'tel') {
+      if (text.replace(/[^0-9]/g,'').length < 9) return say('الرقم خاصو يكون فيه 9 أرقام على الأقل. عاود كتبو عافاك.');
+      lead.tel = text.slice(0,30); stage = 'city'; inp.type = 'text'; inp.placeholder = 'المدينة (اختياري)';
+      return say('وفين كاين المكتب؟ تقدر تكتب المدينة، ولا كتب «لا» إلا ما بغيتيش.');
+    }
+    if (stage === 'city') {
+      lead.city = /^لا$/.test(text.trim()) ? '' : text.slice(0,60); stage = null; inp.placeholder = 'كتب سؤالك هنا…'; note.hidden = true;
+      try {
+        await post({type:'lead', id: rid(), uid: track.uid, ts: Date.now(), day: new Date().toLocaleDateString('en-CA'), office: lead.office, city: lead.city, files: null, tel: lead.tel, dev: track.dev, src: 'chat-' + track.src});
+        track.mark('sub'); try { if (window.fbq) fbq('track', 'Lead', {content_name: 'chat'}); } catch (_) {}
+        ss.set('rc_lead', '1');
+        say('توصلنا. غادي نتاصلو بيك فهاد الرقم باش نحددو موعد التشغيل.\nواش بقا عندك شي سؤال؟', mainChips);
+      } catch (_) { say('ما قدرتش نصيفط المعلومات دابا. عمر الاستمارة لتحت فالصفحة ولا عاود من بعد شوية.', mainChips); }
+    }
+  }
+  function open(fromTeaser){
+    teaser.hidden = true; box.hidden = false; fab.setAttribute('aria-expanded', 'true'); ss.set('rc_seen', '1');
+    if (!opened) { opened = true; track.mark('chat');
+      say('سلام، أنا رفيق، السكرتير الرقمي ديال مكاتب المحاسبة على WhatsApp.', () => say(fromTeaser === 'exit' ? 'قبل ما تمشي: بغيتي نجاوبك على شي سؤال، ولا نتاصلو بيك نشرحو ليك بالتفصيل؟' : 'سولني على الثمن، السرية، التجربة، ولا أي حاجة كتشغلك.', mainChips)); }
+    setTimeout(() => inp.focus(), 300);
+  }
+  const close = () => { box.hidden = true; fab.setAttribute('aria-expanded', 'false'); };
+  fab.addEventListener('click', () => box.hidden ? open() : close());
+  $('#rcClose').addEventListener('click', close);
+  teaser.addEventListener('click', e => { if (e.target.id !== 'rcTeaserX') open(teaser.dataset.kind); });
+  teaser.addEventListener('keydown', e => { if (e.key === 'Enter') open(teaser.dataset.kind); });
+  $('#rcTeaserX').addEventListener('click', e => { e.stopPropagation(); teaser.hidden = true; ss.set('rc_seen', '1'); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !box.hidden) close(); });
+  form.addEventListener('submit', e => { e.preventDefault(); const t = inp.value.trim(); if (!t) return; inp.value = ''; add(t, 'me');
+    if (stage) return leadStep(t);
+    const hit = RULES.find(([re]) => re.test(t)); handle(hit ? hit[1] : 'fallback'); });
+  // proactive: reach visitors who have not acted yet
+  const tease = (text, kind) => { if (opened || ss.get('rc_seen') || ss.get('rc_lead') || !$('#formOk').hidden) return; $('#rcTeaserText').textContent = text; teaser.dataset.kind = kind; teaser.hidden = false; };
+  setTimeout(() => tease('عندك سؤال على كيفاش نخدم مع المكتب ديالك؟ سولني هنا.', 'time'), 25000);
+  let deep = false; addEventListener('scroll', () => { if (deep) return; const h = document.documentElement; if (h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight) > .55) { deep = true; tease('شفتي الثمن والتجربة؟ إلا عندك شي تردد، قولو ليا وأنا نجاوبك.', 'scroll'); } }, {passive: true});
+  document.addEventListener('mouseout', e => { if (!e.relatedTarget && e.clientY <= 0) tease('قبل ما تمشي: بغيتي نتاصلو بيك نشرحو ليك بالتفصيل؟', 'exit'); });
+  let lastY = scrollY, lastT = Date.now(); addEventListener('scroll', () => { const now = Date.now(), dy = scrollY - lastY; if (dy < -900 && now - lastT < 400 && scrollY > 1500) tease('قبل ما تمشي: بغيتي نتاصلو بيك نشرحو ليك بالتفصيل؟', 'exit'); lastY = scrollY; lastT = now; }, {passive: true});
+})();
 
 /* ---------- social accounts: put each official link between the quotes ---------- */
 const SOCIAL = [
