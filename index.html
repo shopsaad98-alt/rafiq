@@ -9,6 +9,8 @@
 <title>رفيق المكتب</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/fontawesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/brands.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <!-- Meta Pixel Code -->
 <script>
@@ -484,6 +486,76 @@ footer.site h3{font-family:var(--f-display); font-size:16px; color:#FFFFFF; marg
   table.t:not(.price) td.k{color:var(--primary); margin-bottom:4px; font-size:16px}
   .tbl-wrap{overflow-x:visible}
 }
+
+/* ===== glass pill navigation (sliding indicator) ===== */
+nav.pill-nav{position:relative; display:flex; flex-wrap:nowrap; gap:2px; padding:6px; border-radius:999px; font-weight:600; font-size:15px;
+  background:linear-gradient(135deg, color-mix(in srgb, var(--panel) 70%, var(--surface)), var(--surface));
+  box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--ink) 8%, transparent), inset -3px -3px 6px color-mix(in srgb, var(--surface) 85%, transparent), inset 3px 3px 8px color-mix(in srgb, var(--ink) 10%, transparent), 0 8px 20px var(--shadow)}
+nav.pill-nav a{position:relative; z-index:1; padding:8px 16px; border-radius:999px; color:var(--soft); white-space:nowrap; transition:color .3s}
+nav.pill-nav a::after{display:none}
+nav.pill-nav a:hover, nav.pill-nav a.on{color:var(--ink)}
+nav.pill-nav a.on{font-weight:700}
+.pill-ind{position:absolute; top:6px; bottom:6px; left:0; width:0; border-radius:999px; z-index:0; opacity:0;
+  background:linear-gradient(135deg, var(--surface), color-mix(in srgb, var(--panel) 55%, var(--surface)));
+  border:1px solid color-mix(in srgb, var(--surface) 75%, transparent);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--ink) 7%, transparent), 0 4px 12px color-mix(in srgb, var(--ink) 18%, transparent);
+  transition:left .5s cubic-bezier(.2,.8,.2,1), width .5s cubic-bezier(.2,.8,.2,1), opacity .3s}
+@media (max-width:860px){
+  header.top .wrap{row-gap:10px}
+  nav.pill-nav{display:flex; order:3; width:100%; overflow-x:auto; scrollbar-width:none; font-size:14px}
+  nav.pill-nav::-webkit-scrollbar{display:none}
+  nav.pill-nav a{padding:7px 13px}
+}
+/* ===== social dock (glass side menu) ===== */
+.social-dock{position:fixed; z-index:56; left:max(14px, env(safe-area-inset-left,0px)); top:50%; transform:translateY(-50%); display:flex; align-items:stretch; gap:10px; font-family:var(--f-body); direction:rtl}
+.sd-rail{order:2; display:flex; flex-direction:column; align-items:center; gap:6px; padding:10px 8px; border-radius:22px;
+  background:linear-gradient(160deg, rgba(20,40,107,.88), rgba(10,18,48,.92)); border:1px solid rgba(143,182,255,.25);
+  box-shadow:0 18px 40px rgba(10,18,48,.35), inset 0 1px 0 rgba(255,255,255,.12); backdrop-filter:blur(14px)}
+.sd-toggle{width:44px; height:44px; border-radius:50%; border:0; padding:0; cursor:pointer; background:transparent; transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.sd-toggle img{width:44px; height:44px; border-radius:50%; display:block; box-shadow:0 0 18px rgba(59,139,255,.55)}
+.social-dock.open .sd-toggle{transform:rotate(-360deg)}
+.sd-sep{width:24px; height:1px; background:rgba(143,182,255,.3); margin:2px 0 4px}
+.sd-ico{position:relative; width:38px; height:38px; border-radius:12px; display:grid; place-items:center; color:#DCE4FF; text-decoration:none; font-size:16px; transition:background .25s, color .25s, transform .25s}
+.sd-ico:hover, .sd-ico:focus-visible{background:var(--brand); color:#fff; transform:scale(1.08)}
+.sd-ico.soon{opacity:.55}
+.sd-ico .tip{position:absolute; left:calc(100% + 12px); top:50%; transform:translate(-6px,-50%); white-space:nowrap; background:#0A1230; color:#fff; font-size:12px; padding:4px 10px; border-radius:8px; opacity:0; pointer-events:none; transition:opacity .2s, transform .2s}
+.sd-ico:hover .tip{opacity:1; transform:translate(0,-50%)}
+.social-dock.open .sd-ico .tip{display:none}
+.sd-panel{order:1; width:0; overflow:hidden; opacity:0; border-radius:22px; color:#F5F7FC;
+  background:radial-gradient(120% 80% at 0% 0%, rgba(59,139,255,.45), transparent 60%), linear-gradient(165deg, #1A3A9E, #0A1230 75%);
+  border:1px solid rgba(143,182,255,.28); box-shadow:0 24px 50px rgba(10,18,48,.45), inset 0 1px 0 rgba(255,255,255,.15); backdrop-filter:blur(16px);
+  transition:width .55s cubic-bezier(.2,.8,.2,1), opacity .35s}
+.social-dock.open .sd-panel{width:270px; opacity:1}
+.sd-in{width:270px; padding:18px 14px 14px; display:flex; flex-direction:column; gap:4px}
+.sd-head b{font-family:var(--f-display); font-size:24px; font-weight:800; display:block; line-height:1.3}
+.sd-head small{color:#AFC4F5; font-size:13px}
+.sd-label{font-size:11px; letter-spacing:.08em; color:#8FA6DD; margin:12px 6px 4px}
+.sd-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px}
+.sd-item{display:flex; align-items:center; gap:12px; padding:9px 10px; border-radius:12px; color:#E6ECFF; text-decoration:none; font-size:14px; transition:background .25s, transform .25s; opacity:0; transform:translateX(-12px)}
+.social-dock.open .sd-item{opacity:1; transform:none; transition:background .25s, transform .45s cubic-bezier(.2,.8,.2,1), opacity .45s}
+.sd-item i{width:28px; height:28px; border-radius:9px; display:grid; place-items:center; background:rgba(255,255,255,.08); font-size:14px; transition:background .25s}
+.sd-item:hover{background:rgba(255,255,255,.1)}
+.sd-item:hover i{background:var(--brand); color:#fff}
+.sd-item .chip{margin-inline-start:auto; font-size:11px; color:#C9D4F5; border:1px solid rgba(143,182,255,.35); border-radius:99px; padding:1px 8px}
+.sd-item .go{margin-inline-start:auto; font-size:12px; color:#AFC4F5}
+.sd-profile{display:flex; align-items:center; gap:10px; margin-top:12px; padding:10px; border-radius:14px; background:rgba(255,255,255,.07)}
+.sd-profile img{width:36px; height:36px; border-radius:50%}
+.sd-profile b{display:block; font-size:14px}
+.sd-profile small{color:#AFC4F5; font-size:12px}
+.sd-fab{display:none}
+@media (max-width:1359px){
+  .social-dock{top:auto; bottom:calc(16px + env(safe-area-inset-bottom,0px)); transform:none; flex-direction:column-reverse; align-items:flex-start}
+  .sd-rail{display:none}
+  .sd-fab{display:block; width:56px; height:56px; border-radius:50%; border:0; padding:0; cursor:pointer; background:transparent; box-shadow:0 10px 26px rgba(10,18,48,.4); animation:logoGlow2 4s ease-in-out infinite}
+  .sd-fab img{width:56px; height:56px; border-radius:50%; display:block}
+  .social-dock.open .sd-panel{width:min(290px, calc(100vw - 32px))}
+  .sd-in{width:min(290px, calc(100vw - 32px)); max-height:min(70vh, 560px); overflow:auto}
+}
+.ft-social{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px}
+.ft-social a{width:36px; height:36px; border-radius:11px; display:grid; place-items:center; color:#DCE4FF; background:rgba(255,255,255,.06); border:1px solid rgba(143,182,255,.2); text-decoration:none; transition:background .25s, transform .25s}
+.ft-social a:hover{background:var(--brand); color:#fff; transform:translateY(-3px)}
+.ft-social a.soon{opacity:.5}
+@media (prefers-reduced-motion: reduce){.sd-panel,.sd-item,.pill-ind,.sd-toggle{transition:none}.sd-fab{animation:none}}
 @media (prefers-reduced-motion: reduce){.brand-logo,.ft-brand img,footer.site::before,footer.site::after,.to-top svg{animation:none}}
 
 @media (prefers-reduced-motion: reduce){
@@ -502,8 +574,8 @@ footer.site h3{font-family:var(--f-display); font-size:16px; color:#FFFFFF; marg
       <img class="brand-logo" src="logo.webp" alt="شعار رفيق" width="52" height="52">
       <span>رفيق <b>المكتب</b></span>
     </a>
-    <nav class="menu" aria-label="القائمة">
-      <a href="#calendar">الآجال</a><a href="#how">كيفاش كيخدم</a><a href="#calc">احسب الوقت</a><a href="#security">السرية</a><a href="#pricing">الثمن</a>
+    <nav class="menu pill-nav" aria-label="القائمة" id="pillNav">
+      <span class="pill-ind" aria-hidden="true"></span><a href="#calendar">الآجال</a><a href="#how">كيفاش كيخدم</a><a href="#calc">احسب الوقت</a><a href="#security">السرية</a><a href="#pricing">الثمن</a>
     </nav>
     <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap">
       <a href="#pilot" class="btn btn-main" style="min-height:44px; font-size:16px; padding:0 18px" data-cta="nav">طلب تجربة</a>
@@ -871,6 +943,7 @@ footer.site h3{font-family:var(--f-display); font-size:16px; color:#FFFFFF; marg
       <div class="nm">رفيق المكتب</div>
       <div class="tg">أفكار أوضح .. إنجاز أسرع</div>
       <p>السكرتير ديال مكتب المحاسبة على WhatsApp بالدارجة: كيجمع الوثائق، كيفكر بالآجال، وكيحول ليك الأسئلة الضريبية.</p>
+      <div class="ft-social" id="ftSocial" aria-label="حسابات رفيق"></div>
     </div>
     <nav class="rv" aria-label="روابط الصفحة">
       <h3>الصفحة</h3>
@@ -905,6 +978,22 @@ footer.site h3{font-family:var(--f-display); font-size:16px; color:#FFFFFF; marg
     <a href="#top" class="to-top"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>رجع للفوق</a>
   </div>
 </footer>
+
+<aside class="social-dock" id="socialDock" aria-label="حسابات رفيق فمواقع التواصل">
+  <button type="button" class="sd-fab" id="sdFab" aria-expanded="false" aria-controls="sdPanel" aria-label="حسابات رفيق"><img src="logo.webp" alt="" width="56" height="56"></button>
+  <div class="sd-rail" id="sdRail">
+    <button type="button" class="sd-toggle" id="sdToggle" aria-expanded="false" aria-controls="sdPanel" aria-label="حل حسابات رفيق"><img src="logo.webp" alt="" width="44" height="44"></button>
+    <span class="sd-sep" aria-hidden="true"></span>
+  </div>
+  <div class="sd-panel" id="sdPanel">
+    <div class="sd-in">
+      <div class="sd-head"><b>رفيق</b><small>تابعنا فكل المنصات</small></div>
+      <div class="sd-label">المنصات</div>
+      <ul class="sd-list" id="sdList"></ul>
+      <div class="sd-profile"><img src="logo.webp" alt="" width="36" height="36"><div><b>رفيق المكتب</b><small>الحسابات الرسمية</small></div></div>
+    </div>
+  </div>
+</aside>
 
 <script>
 (() => {
@@ -953,6 +1042,53 @@ $('#bars').innerHTML = [6,4,2].map(v => `<div class="gl" style="bottom:${(v/6*19
   return `<div class="col"><b class="num">${n}</b><i style="height:${Math.round(n/6*190)}px; background:${c}; transition-delay:${i*60}ms"></i></div>`;
 }).join('');
 $('#mlabels').innerHTML = L.map(l => `<span>${l}</span>`).join('');
+
+/* ---------- social accounts: put each official link between the quotes ---------- */
+const SOCIAL = [
+  ['WhatsApp',  'fa-whatsapp',    '#25D366', ''],
+  ['Facebook',  'fa-facebook-f',  '#1877F2', ''],
+  ['Instagram', 'fa-instagram',   '#E4405F', ''],
+  ['TikTok',    'fa-tiktok',      '#111111', ''],
+  ['LinkedIn',  'fa-linkedin-in', '#0A66C2', ''],
+  ['YouTube',   'fa-youtube',     '#FF0000', ''],
+  ['X',         'fa-x-twitter',   '#111111', ''],
+  ['Threads',   'fa-threads',     '#111111', ''],
+  ['Snapchat',  'fa-snapchat',    '#E8C500', ''],
+  ['Telegram',  'fa-telegram',    '#26A5E4', ''],
+  ['Pinterest', 'fa-pinterest-p', '#E60023', '']
+];
+(function socialDock(){
+  const attrs = url => url ? 'href="' + url + '" target="_blank" rel="noopener"' : 'aria-disabled="true" tabindex="-1"';
+  const rail = $('#sdRail'), list = $('#sdList'), ft = $('#ftSocial');
+  SOCIAL.forEach(([name, ic, col, url], i) => {
+    const soon = !url;
+    rail.insertAdjacentHTML('beforeend', '<a class="sd-ico' + (soon ? ' soon' : '') + '" style="--brand:' + col + '" ' + attrs(url) + ' aria-label="' + name + (soon ? ' (قريباً)' : '') + '"><i class="fa-brands ' + ic + '" aria-hidden="true"></i><span class="tip">' + name + (soon ? ' · قريباً' : '') + '</span></a>');
+    list.insertAdjacentHTML('beforeend', '<li><a class="sd-item" style="--brand:' + col + '; transition-delay:' + (80 + i * 45) + 'ms" ' + attrs(url) + '><i class="fa-brands ' + ic + '" aria-hidden="true"></i><span>' + name + '</span>' + (soon ? '<span class="chip">قريباً</span>' : '<span class="go">↗</span>') + '</a></li>');
+    if (ft) ft.insertAdjacentHTML('beforeend', '<a class="' + (soon ? 'soon' : '') + '" style="--brand:' + col + '" ' + attrs(url) + ' aria-label="' + name + '"><i class="fa-brands ' + ic + '" aria-hidden="true"></i></a>');
+  });
+  const dock = $('#socialDock'), btns = [$('#sdToggle'), $('#sdFab')];
+  const set = open => { dock.classList.toggle('open', open); btns.forEach(b => b.setAttribute('aria-expanded', open)); };
+  btns.forEach(b => b.addEventListener('click', () => set(!dock.classList.contains('open'))));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
+  document.addEventListener('click', e => { if (!dock.contains(e.target)) set(false); });
+  document.querySelectorAll('a[aria-disabled="true"]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
+})();
+
+/* ---------- glass pill nav: indicator follows hover and the section on screen ---------- */
+(function pillNav(){
+  const nav = $('#pillNav'); if (!nav) return;
+  const ind = nav.querySelector('.pill-ind'), links = [...nav.querySelectorAll('a')];
+  let active = null;
+  const moveTo = a => { if (!a) { ind.style.opacity = 0; return; } ind.style.opacity = 1; ind.style.left = a.offsetLeft + 'px'; ind.style.width = a.offsetWidth + 'px'; };
+  const setActive = a => { active = a; links.forEach(l => l.classList.toggle('on', l === a)); moveTo(a); if (a && nav.scrollWidth > nav.clientWidth) nav.scrollTo({left: a.offsetLeft - 40, behavior: 'smooth'}); };
+  links.forEach(a => { a.addEventListener('mouseenter', () => moveTo(a)); a.addEventListener('click', () => setActive(a)); });
+  nav.addEventListener('mouseleave', () => moveTo(active));
+  const secs = links.map(a => document.querySelector(a.getAttribute('href')));
+  const pick = () => { const y = innerHeight * .35; let cur = null; secs.forEach((s, i) => { if (s && s.getBoundingClientRect().top <= y && s.getBoundingClientRect().bottom > y) cur = links[i]; }); if (cur !== active) setActive(cur); };
+  addEventListener('scroll', () => requestAnimationFrame(pick), {passive: true});
+  addEventListener('resize', () => moveTo(active));
+  pick();
+})();
 
 /* ---------- pricing as cards on phones ---------- */
 (function planCards(){
