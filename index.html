@@ -454,6 +454,36 @@ footer.site h3{font-family:var(--f-display); font-size:16px; color:#FFFFFF; marg
 .to-top:hover{background:rgba(255,255,255,.08); color:#FFFFFF; transform:translateY(-2px)}
 .to-top svg{animation:bob 2s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+
+/* phone fixes */
+.plan-cards{display:none}
+.plan{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:22px 18px; text-align:center}
+.plan.hot{background:var(--deep); color:var(--on-deep); border-color:var(--deep); box-shadow:0 18px 40px var(--shadow)}
+.plan .pr{margin-block:2px}
+.plan ul{list-style:none; margin:16px 0; padding:0; text-align:right}
+.plan li{display:flex; justify-content:space-between; gap:12px; padding-block:10px; border-top:1px solid var(--line2); font-size:15px}
+.plan.hot li{border-top-color:rgba(255,255,255,.12); color:var(--on-deep-muted)}
+.plan li b{font-weight:700; color:var(--ink); white-space:nowrap}
+.plan.hot li b{color:var(--on-deep)}
+.plan .btn{width:100%}
+.plan .badge{display:inline-block; background:var(--accent); color:var(--on-accent); font-size:12px; font-weight:700; border-radius:99px; padding:2px 12px; margin-bottom:8px}
+@media (max-width:640px){
+  .stage{padding-bottom:0}
+  .stage .dash-card{margin:-56px 10px 0 10px !important}
+  .dash-card .bar{flex-wrap:wrap; gap:4px}
+  .kpis3{gap:8px; padding:12px}
+  .kpis3 .val{font-size:22px}
+  .rows4 .nm{flex:0 0 86px}
+  .price-wrap{display:none}
+  .plan-cards{display:grid; gap:14px}
+  table.t:not(.price){min-width:0; border:0; background:transparent}
+  table.t:not(.price) thead{display:none}
+  table.t:not(.price), table.t:not(.price) tbody, table.t:not(.price) tr, table.t:not(.price) td{display:block; width:100%}
+  table.t:not(.price) tbody tr{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:14px 16px; margin-bottom:10px}
+  table.t:not(.price) td{padding:0; text-align:right}
+  table.t:not(.price) td.k{color:var(--primary); margin-bottom:4px; font-size:16px}
+  .tbl-wrap{overflow-x:visible}
+}
 @media (prefers-reduced-motion: reduce){.brand-logo,.ft-brand img,footer.site::before,footer.site::after,.to-top svg{animation:none}}
 
 @media (prefers-reduced-motion: reduce){
@@ -923,6 +953,24 @@ $('#bars').innerHTML = [6,4,2].map(v => `<div class="gl" style="bottom:${(v/6*19
   return `<div class="col"><b class="num">${n}</b><i style="height:${Math.round(n/6*190)}px; background:${c}; transition-delay:${i*60}ms"></i></div>`;
 }).join('');
 $('#mlabels').innerHTML = L.map(l => `<span>${l}</span>`).join('');
+
+/* ---------- pricing as cards on phones ---------- */
+(function planCards(){
+  const t = document.querySelector('table.price'); if (!t) return;
+  const wrap = t.closest('.tbl-wrap'); wrap.classList.add('price-wrap');
+  const ths = [...t.querySelectorAll('thead th')].slice(1);
+  const rows = [...t.querySelectorAll('tbody tr')].map(tr => [...tr.children].map(td => td.textContent.trim()));
+  const box = document.createElement('div'); box.className = 'plan-cards stagger';
+  ths.forEach((th, i) => {
+    const hot = th.classList.contains('hot');
+    const c = document.createElement('div'); c.className = 'plan' + (hot ? ' hot' : '');
+    c.innerHTML = th.innerHTML +
+      '<ul>' + rows.map(r => '<li><span>' + r[0] + '</span><b>' + r[i + 1] + '</b></li>').join('') + '</ul>' +
+      '<a href="#pilot" class="btn ' + (hot ? 'btn-amber' : 'btn-main') + '">طلب تجربة</a>';
+    box.appendChild(c);
+  });
+  wrap.after(box);
+})();
 
 /* ---------- image motion: wrap, wipe-in, parallax ---------- */
 const wraps = [];
